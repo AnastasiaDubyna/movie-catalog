@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import './App.css';
 import { getMovieById } from './repository/movieRepository';
 
 function App() {
-	getMovieById("343611")
-	.then(movieData => console.log(movieData));
-
+	useEffect(() => {
+		getMovieById("343611")
+	}, [])
+	
 	return (
 		<div className="App">
 			hello world
