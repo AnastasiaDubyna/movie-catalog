@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { getMovieById } from './repository/movieRepository';
+import HomePage from './pages/HomePage';
 
 function App() {
-	useEffect(() => {
-		getMovieById("343611")
-	}, [])
-	
 	return (
-		<div className="App">
-			hello world
-		</div>
+		<Router>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+			</Routes>
+		</Router>
 	);
 }
 
