@@ -2,6 +2,7 @@ import Header from "../header/Header";
 import PropTypes from 'prop-types';
 import "./pageBase.css";
 
+// заменить на див
 const PageBase = ({children}) => {
     return (
         <>

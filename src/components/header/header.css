@@ -6,9 +6,10 @@
     align-items: center;
 }
 
+/* убрать импортант */
 .header-grid {
     align-items: center;
-    width: 60% !important;
+    width: 60% !important; 
     margin: auto;
 }
 
