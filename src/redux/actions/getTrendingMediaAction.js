@@ -1,15 +1,12 @@
-import { trendingCarouselTabs } from "../../pages/constants";
-import { getTrendingForDay, getTrendingForWeek } from "../../repository/movieRepository";
-import { GET_TRENDING_FOR_DAY, GET_TRENDING_FOR_WEEK } from "../constants";
+import { getTrending } from "../../repository/movieRepository";
+import { GET_TRENDING } from "../constants";
 
 const getTrendingMediaAction = (type) => async (dispatch) => {
-    const data = type === trendingCarouselTabs.DAY ? await getTrendingForDay() : await getTrendingForWeek();
+    const data = await getTrending(type);
 
-    console.log(data);
-    
     dispatch({
-        type: trendingCarouselTabs.DAY ? GET_TRENDING_FOR_DAY : GET_TRENDING_FOR_WEEK, 
-        payload: {type: data}});
+        type: GET_TRENDING, 
+        payload: {data}});
 };
 
 export default getTrendingMediaAction;

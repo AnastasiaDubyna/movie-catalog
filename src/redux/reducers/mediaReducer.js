@@ -1,21 +1,15 @@
-import { GET_TRENDING_FOR_DAY } from "../constants";
+import { GET_TRENDING } from "../constants";
 
 const defaultState = {
-    trending: {
-        day: [],
-        week: []
-    }
+    trending: []
 } 
 
 const mediaReducer = (state = defaultState, {type, payload}) => {
     switch (type) {
-        case GET_TRENDING_FOR_DAY:
+        case GET_TRENDING:
             return {
                 ...state,
-                trending: {
-                    ...state.trending,
-                    ...payload
-                }
+                trending: [...payload.data]
             };
         default: 
             return state;

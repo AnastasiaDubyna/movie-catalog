@@ -1,20 +1,22 @@
-import { ButtonGroup, Button, Card } from "@mui/material";
+import { Card, Tab, Tabs } from "@mui/material";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
+import "./carousel.css";
 
 
-const Carousel = ({title, buttons, media}) => {
+const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
     if (media) {
         return (
             <div className="carousel">
                 <div className="carousel-title">{ title }</div>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group" className="carousel-buttons-group">
+                <Tabs
+                    value={activeTab}
+                    onChange={onTabChange}
+                >
                     {
-                        buttons.map(buttonObj => (
-                            <Button onClick={buttonObj.onClick} key={nanoid(3)}>{buttonObj.name}</Button>
-                        ))
+                        tabs.map(tab => <Tab label={tab} value={tab} key={nanoid(3)} />)
                     }
-                </ButtonGroup>
+                </Tabs>
                 <div className="carousel-media">
                     {
                         media.map(mediaData => (
@@ -29,8 +31,10 @@ const Carousel = ({title, buttons, media}) => {
 
 Carousel.propTypes = {
     title: PropTypes.string, 
-    buttons: PropTypes.array, 
-    media: PropTypes.array
+    tabs: PropTypes.array, 
+    media: PropTypes.array,
+    activeTab: PropTypes.string,
+    onTabChange: PropTypes.func
 };
 
 export default Carousel;

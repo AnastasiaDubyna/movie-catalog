@@ -7,22 +7,16 @@ import getTrendingMediaAction from "../redux/actions/getTrendingMediaAction";
 
 const HomePage = () => {
     const [trendingCarouselActiveTab, setTrandingCarouselActiveTab] = useState(trendingCarouselTabs.DAY);
-    let trendingCarouselMedia = useSelector(state => state.mediaReducer.trending.trendingCarouselActiveTab);
+    const trendingCarouselMedia = useSelector(state => state.mediaReducer.trending);
     const dispatch = useDispatch();
 
-    const handleTrendingCarouselClick = ({target: {value}}) => {
-        setTrandingCarouselActiveTab(value);
+    const handleTrendingTabsChange = (event, newValue) => {
+        setTrandingCarouselActiveTab(newValue);
     };
 
     useEffect(() => {
-        trendingCarouselMedia = useSelector(state => state.mediaReducer.trending.trendingCarouselActiveTab);
-    }, [trendingCarouselActiveTab])
-
-    useEffect(() => {
-        if (!trendingCarouselMedia) {
-            dispatch(getTrendingMediaAction(trendingCarouselActiveTab));
-        }
-    }, []);
+        dispatch(getTrendingMediaAction(trendingCarouselActiveTab));
+    }, [trendingCarouselActiveTab]);
 
     console.log(trendingCarouselMedia);
 
@@ -30,9 +24,9 @@ const HomePage = () => {
         <PageBase>
             <Carousel
                 title="Trending"
-                active={trendingCarouselActiveTab}
-                buttons={[trendingCarouselTabs.DAY, trendingCarouselTabs.WEEK]}
-                onClick={handleTrendingCarouselClick}
+                activeTab={trendingCarouselActiveTab}
+                tabs={[trendingCarouselTabs.DAY, trendingCarouselTabs.WEEK]}
+                onTabChange={handleTrendingTabsChange}
                 media={trendingCarouselMedia}
             />
         </PageBase>
