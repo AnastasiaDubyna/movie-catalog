@@ -1,3 +1,19 @@
 .carousel-media {
-    
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 40px 0;
+}
+
+.carousel-media::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-media::-webkit-scrollbar-thumb {
+    background-color: rgb(219, 219, 219);
+    border-radius: 5px;
+}
+
+.media-image {
+    border-radius: 5px;
 }
