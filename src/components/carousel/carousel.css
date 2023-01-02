@@ -1,0 +1,44 @@
+.carousel-media {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 20px 0 40px;
+}
+
+.carousel-media::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-media::-webkit-scrollbar-thumb {
+    background-color: rgb(219, 219, 219);
+    border-radius: 5px;
+}
+
+.carousel-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-tabs {
+    border-radius: 37px;
+    border: 1px solid rgb(3, 37, 65);
+    /* font-family: 'Source Sans Pro', sans-serif; */
+}
+
+.carousel-title {
+    font-size: 1.75em;
+}
+
+.media-image {
+    border-radius: 5px;
+}
+
+.media-title {
+    margin-top: 28px;
+    font-weight: 600;
+}
+
+.image-rating-container{
+    position: relative;
+}

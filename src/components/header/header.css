@@ -1,3 +1,4 @@
+/* вынести цвета в константы */
 .header-container {
     background-color: rgb(3, 37, 65);
     width: 100%;
@@ -6,9 +7,10 @@
     align-items: center;
 }
 
+/* убрать импортант */
 .header-grid {
     align-items: center;
-    width: 60% !important;
+    width: 60% !important; 
     margin: auto;
 }
 
