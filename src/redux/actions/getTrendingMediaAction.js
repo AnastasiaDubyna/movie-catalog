@@ -6,7 +6,8 @@ const getTrendingMediaAction = (type) => async (dispatch) => {
 
     dispatch({
         type: GET_TRENDING, 
-        payload: {data}});
+        payload: {data}
+    });
 };
 
 export default getTrendingMediaAction;
