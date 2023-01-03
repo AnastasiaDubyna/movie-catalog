@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/HomePage';
+import './styles/constants.css';
+import HomePage from './pages/homePage/HomePage';
 
 // вынести роут в отдельный файл
 function App() {

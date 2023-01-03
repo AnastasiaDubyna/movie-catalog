@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 const Header = () => {
     return (
         <div className="header-container">
-            <Grid container className="header-grid">
+            <Grid container className="header-grid" sx={{width: "60%"}}>
                 <Grid item  xs={5} sm={6} md={7} lg={1}>
                     <Logo />
                 </Grid>

@@ -1,16 +1,13 @@
-/* вынести цвета в константы */
 .header-container {
-    background-color: rgb(3, 37, 65);
+    background-color: var(--dark-blue);
     width: 100%;
     height: 64px;
     display: flex;
     align-items: center;
 }
 
-/* убрать импортант */
 .header-grid {
     align-items: center;
-    width: 60% !important; 
     margin: auto;
 }
 
@@ -19,7 +16,7 @@
 }
 
 .header-tab a {
-    color: white;
+    color: var(--white);
     font-size: 1em;
-    font-weight: 600d;
+    font-weight: 600;
 }

@@ -3,9 +3,11 @@ import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 import RatingCircle from "../ratingCircle/RatingCircle";
 import "./carousel.css";
+import { API_IMG_W154_URL } from "./consants";
 
 
 const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
+    console.log(media);
     if (media) {
         return (
             <div className="carousel">
@@ -34,12 +36,12 @@ const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
                     </Tabs>
                 </div>
                 <div className="carousel-media">
-                    {/* { снести ссылку в константы */
+                    {/* поменять абсолют-релатив <----------- обсудить */
                         media.map(mediaData => (
                             <div key={nanoid(4)} className="media-card">
                                 <div className="image-rating-container">
                                     <RatingCircle className="media-rating" percentage={Math.floor(mediaData.vote_average * 10)} />
-                                    <img className="media-image" src={`https://image.tmdb.org/t/p/w154${mediaData.poster_path}`} />
+                                    <img className="media-image" src={`${API_IMG_W154_URL}${mediaData.poster_path}`} />
                                 </div>
                                 <p className="media-title">{mediaData.title || mediaData.name}</p>
                             </div>
@@ -49,14 +51,15 @@ const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
             </div>
         )
     }
+    return null;
+    // допилить загрузку
 };
-// масив чего?
 Carousel.propTypes = {
-    title: PropTypes.string, 
-    tabs: PropTypes.array, 
-    media: PropTypes.array,
-    activeTab: PropTypes.string,
-    onTabChange: PropTypes.func
+    title: PropTypes.string.isRequired, 
+    tabs: PropTypes.arrayOf(PropTypes.string).isRequired, 
+    media: PropTypes.arrayOf(PropTypes.object).isRequired,
+    activeTab: PropTypes.string.isRequired,
+    onTabChange: PropTypes.func.isRequired
 };
 
 export default Carousel;

@@ -10,7 +10,7 @@
 }
 
 .carousel-media::-webkit-scrollbar-thumb {
-    background-color: rgb(219, 219, 219);
+    background-color: var(--light-grey);
     border-radius: 5px;
 }
 
@@ -22,8 +22,7 @@
 
 .carousel-tabs {
     border-radius: 37px;
-    border: 1px solid rgb(3, 37, 65);
-    /* font-family: 'Source Sans Pro', sans-serif; */
+    border: 1px solid var(--dark-blue);
 }
 
 .carousel-title {
