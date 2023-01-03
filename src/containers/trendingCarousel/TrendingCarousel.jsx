@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getTrendingMediaAction from "../../redux/actions/getTrendingMediaAction";
-import Carousel from "../carousel/Carousel";
-import { trendingCarouselTabs } from "./constants";
+import Carousel from "../../components/carousel/Carousel";
+import { DAY, trendingCarouselTabs } from "../../constants";
 
 const TrendingCarousel = () => {
-    const [activeTab, setActiveTab] = useState(trendingCarouselTabs.DAY);
+    const [activeTab, setActiveTab] = useState(DAY);
     const media = useSelector(state => state.mediaReducer.trending);
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const TrendingCarousel = () => {
         <Carousel
             title="Trending"
             activeTab={activeTab}
-            tabs={[trendingCarouselTabs.DAY, trendingCarouselTabs.WEEK]}
+            tabs={trendingCarouselTabs}
             onTabChange={handleTabsChange}
             media={media}
         />

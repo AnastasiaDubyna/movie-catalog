@@ -1,6 +1,6 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 import PropTypes from 'prop-types';
+import 'react-circular-progressbar/dist/styles.css';
 import "./ratingCircle.css";
 
 

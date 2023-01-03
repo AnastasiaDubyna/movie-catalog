@@ -1,10 +1,10 @@
-import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { Grid } from "@mui/material";
 import Logo from "../logo/Logo";
 import Search from "../search/Search";
-import "./header.css";
 import { headerTabs } from "./constants";
-import { nanoid } from "nanoid";
+import "./header.css";
 
 const Header = () => {
     return (
