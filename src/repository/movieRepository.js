@@ -1,4 +1,5 @@
 import { fetchData } from "../api"
+import { popularMediaUrl } from "./constants.js";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -10,11 +11,15 @@ export const getMovieById = async (id) => {
 
 export const getTrending = async (type) => {
     const {data: {results}} = await fetchData(`${API_URL}/trending/all/${type}`);
-    getConfigurations();
     return results;
 };
 
-const getConfigurations = async () => {
-    const {data} = await fetchData(`${API_URL}/configuration`);
-    console.log(data);
-};
+export const getPopular = async (type) => {
+    const {data: {results}} = await fetchData(`${API_URL}${popularMediaUrl[type]}`);
+    return results;
+}
+
+// const getConfigurations = async () => {
+//     const {data} = await fetchData(`${API_URL}/configuration`);
+//     console.log(data);
+// };

@@ -1,0 +1,1 @@
+export const API_IMG_W154_URL = "https://image.tmdb.org/t/p/w154";

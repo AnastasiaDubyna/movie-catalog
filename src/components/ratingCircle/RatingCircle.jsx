@@ -14,10 +14,14 @@ const RatingCircle = ({percentage}) => {
     return (
         <CircularProgressbar className={getColorClass()} value={percentage} text={`${percentage}%`} />
     )
-}
+};
 
 RatingCircle.propTypes = {
     percentage: PropTypes.number
-}
+};
+
+RatingCircle.defaultProps = {
+    percentage: 0
+};
 
 export default RatingCircle;
