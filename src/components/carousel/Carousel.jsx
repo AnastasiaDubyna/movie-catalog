@@ -2,12 +2,11 @@ import { Tab, Tabs } from "@mui/material";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 import RatingCircle from "../ratingCircle/RatingCircle";
+import { API_IMG_W154_URL } from "./constants";
 import "./carousel.css";
-import { API_IMG_W154_URL } from "./consants";
 
 
 const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
-    console.log(media);
     if (media) {
         return (
             <div className="carousel">
@@ -36,7 +35,7 @@ const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
                     </Tabs>
                 </div>
                 <div className="carousel-media">
-                    {/* поменять абсолют-релатив <----------- обсудить */
+                    {/* поменять абсолют-релатив */
                         media.map(mediaData => (
                             <div key={nanoid(4)} className="media-card">
                                 <div className="image-rating-container">

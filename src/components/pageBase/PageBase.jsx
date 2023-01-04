@@ -1,5 +1,5 @@
-import Header from "../header/Header";
 import PropTypes from 'prop-types';
+import Header from "../header/Header";
 import "./pageBase.css";
 
 const PageBase = ({children}) => {
