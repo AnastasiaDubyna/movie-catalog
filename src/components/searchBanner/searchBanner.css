@@ -1,0 +1,47 @@
+.search-banner {
+    background-image: linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0) 100%), url("https://image.tmdb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/6LfVuZBiOOCtqch5Ukspjb9y0EB.jpg");
+    height: 500px;
+    background-position: top center;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-banner .search-input {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 8px 25px;
+    height: 50px;
+    border-radius: 30px 0px 0px 30px;
+}
+
+.search-input-container {
+    width: 90%;
+    display: flex;
+    margin-top: 90px;
+}
+
+.search-banner h1, .search-banner h2 {
+    width: 90%;
+    color: var(--white);
+}
+
+.search-banner h1 {
+    font-size: 3em;
+}
+
+.search-banner h2 {
+    font-size: 2em;
+}
+
+#search-button {
+    height: 50px;
+    width: 120px;
+    border-radius: 0px 30px 30px 0px;
+    box-shadow: none;
+    font-family: var(--main-font-family);
+    background: linear-gradient(to right, rgba(30, 213, 169, 1) 0%, rgba(1, 180, 228, 1) 100%);;   
+}

@@ -1,8 +1,9 @@
-import { GET_POPULAR, GET_TRENDING } from "../constants";
+import { GET_POPULAR, GET_SEARCH, GET_TRENDING } from "../constants";
 
 const defaultState = {
     trending: [],
-    popular: []
+    popular: [],
+    searched: []
 } 
 
 const mediaReducer = (state = defaultState, {type, payload}) => {
@@ -16,6 +17,11 @@ const mediaReducer = (state = defaultState, {type, payload}) => {
             return {
                 ...state,
                 popular: [...payload.data]
+            };
+        case GET_SEARCH:
+            return {
+                ...state,
+                searched: [...payload.data]
             };
         default: 
             return state;

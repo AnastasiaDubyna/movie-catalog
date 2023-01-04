@@ -17,7 +17,12 @@ export const getTrending = async (type) => {
 export const getPopular = async (type) => {
     const {data: {results}} = await fetchData(`${API_URL}${popularMediaUrl[type]}`);
     return results;
-}
+};
+
+export const getSearch = async (query) => {
+    const {data: {results}} = await fetchData(`${API_URL}/search/multi?query=${query}`);
+    return results;
+};
 
 // const getConfigurations = async () => {
 //     const {data} = await fetchData(`${API_URL}/configuration`);

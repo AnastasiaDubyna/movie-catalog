@@ -7,7 +7,6 @@ import "./carousel.css";
 
 
 const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
-    console.log(media);
     if (media) {
         return (
             <div className="carousel">
@@ -36,7 +35,7 @@ const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
                     </Tabs>
                 </div>
                 <div className="carousel-media">
-                    {/* поменять абсолют-релатив <----------- обсудить */
+                    {/* поменять абсолют-релатив */
                         media.map(mediaData => (
                             <div key={nanoid(4)} className="media-card">
                                 <div className="image-rating-container">
