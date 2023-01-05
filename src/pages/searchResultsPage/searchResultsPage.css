@@ -1,0 +1,23 @@
+.search-results-page-content {
+    margin-top: 50px;
+    display: flex;
+    gap: 50px;
+}
+#search-results-tabs {
+    width: 300px;
+}
+
+#search-results-tabs .MuiTab-root{
+    font-family: var(--main-font-family);
+    font-weight: 600;
+}
+
+#search-results-tabs .Mui-selected {
+    background-color: var(--dark-blue);
+    color: #1ed5a9;
+    border-radius: 37px;
+}
+
+#search-results-tabs .css-10d9dml-MuiTabs-indicator {
+    display: none;
+}

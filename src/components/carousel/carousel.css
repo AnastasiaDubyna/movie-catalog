@@ -20,24 +20,24 @@
     gap: 20px;
 }
 
-.carousel-tabs {
+#carousel-tabs {
     border-radius: 37px;
     border: 1px solid var(--dark-blue);
 }
 
-.carousel-title {
-    font-size: 1.75em;
-}
-
-.media-image {
-    border-radius: 5px;
-}
-
-.media-title {
-    margin-top: 28px;
+#carousel-tabs .MuiTab-root{
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
 }
 
-.image-rating-container{
-    position: relative;
+#carousel-tabs .Mui-selected {
+    background-color: var(--dark-blue);
+    color: #1ed5a9;
+    border-radius: 37px;
 }
+
+#carousel-tabs .css-1aquho2-MuiTabs-indicator {
+    display: none;
+}
+
+
