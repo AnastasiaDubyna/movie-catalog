@@ -1,0 +1,19 @@
+.media-card {
+    width: 154px;
+}
+.carousel-title {
+    font-size: 1.75em;
+}
+
+.media-image {
+    border-radius: 5px;
+}
+
+.media-title {
+    margin-top: 28px;
+    font-weight: 600;
+}
+
+.image-rating-container{
+    position: relative;
+}

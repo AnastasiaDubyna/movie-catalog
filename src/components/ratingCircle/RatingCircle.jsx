@@ -4,24 +4,23 @@ import 'react-circular-progressbar/dist/styles.css';
 import "./ratingCircle.css";
 
 
-const RatingCircle = ({percentage}) => {
+const RatingCircle = ({voteAverage}) => {
+    const percentage = Math.floor(voteAverage * 10);
     const getColorClass = () => {
         if (percentage < 40) return "low";
         if (percentage >= 70) return "high";
         return "moderate" 
     }
-
-    return (
-        <CircularProgressbar className={getColorClass()} value={percentage} text={`${percentage}%`} />
-    )
+    if (!isNaN(voteAverage)) {
+        return (
+            <CircularProgressbar className={getColorClass()} value={percentage} text={`${percentage}%`} />
+        )
+    }
+    return null;
 };
 
 RatingCircle.propTypes = {
-    percentage: PropTypes.number
-};
-
-RatingCircle.defaultProps = {
-    percentage: 0
+    voteAverage: PropTypes.number
 };
 
 export default RatingCircle;
