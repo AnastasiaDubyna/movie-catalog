@@ -3,9 +3,8 @@
     border-radius: 100%;
     height: 50px;
     width: 50px;
-    position: absolute;
-    bottom: -9%;
-    left: 7%;
+    margin-left: 13px;
+    margin-top: -25px;
 }
 
 .CircularProgressbar.low .CircularProgressbar-path {

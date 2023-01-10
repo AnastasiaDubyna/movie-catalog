@@ -4,6 +4,15 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+html, body, #root, .whole-page {
+    height: 100%;
+}
+
+/* .whole-page {
+    display: flex;
+    flex-direction: column;
+} */
+
 a, a:active, a:focus {
     text-decoration: none;
 }
