@@ -1,6 +1,9 @@
 .page-content {
     width: 60%;
     margin: auto;
-    min-height: calc(100% - 364px); /* magic number */
-    /* придумать что-то другое */
+    padding-bottom: 350px;
+}
+
+.whole-page {
+    position: relative;
 }

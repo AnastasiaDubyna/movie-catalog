@@ -4,14 +4,9 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-html, body, #root, .whole-page {
-    height: 100%;
+body, #root, .whole-page {
+    min-height: 100vh;
 }
-
-/* .whole-page {
-    display: flex;
-    flex-direction: column;
-} */
 
 a, a:active, a:focus {
     text-decoration: none;

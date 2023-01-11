@@ -5,6 +5,9 @@
     background-color: var(--dark-blue);
     color: var(--white);
     height: 300px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 #footer-grid {
