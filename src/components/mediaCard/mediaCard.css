@@ -10,10 +10,7 @@
 }
 
 .media-title {
-    margin-top: 28px;
+    margin-top: 16px;
     font-weight: 600;
-}
-
-.image-rating-container{
-    position: relative;
+    font-size: 1.1em;
 }

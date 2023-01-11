@@ -5,7 +5,7 @@ import "./pageBase.css";
 
 const PageBase = ({children}) => {
     return (
-        <div>
+        <div className="whole-page">
             <Header />
             <div className="page-content">
                 {children}

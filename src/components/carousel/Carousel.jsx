@@ -22,8 +22,8 @@ const Carousel = ({title, tabs, media, activeTab, onTabChange}) => {
                     </Tabs>
                 </div>
                 <div className="carousel-media">
-                    {/* поменять абсолют-релатив */
-                        media.map(mediaData => <MediaCard mediaData={mediaData} key={nanoid(3)}/>)
+                    {
+                        media.map(mediaData => <MediaCard mediaData={mediaData} withRating={true} key={nanoid(3)}/>)
                     }
                 </div>
             </div>
