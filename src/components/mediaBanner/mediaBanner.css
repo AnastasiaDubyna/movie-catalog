@@ -1,0 +1,50 @@
+.media-banner {
+    position: relative;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.media-banner-backdrop {
+    height: 520px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.media-banner-backdrop img {
+    width: 100%;
+}
+
+.media-banner-backdrop::after {
+    content: '';
+    position: absolute;
+    left: 0; 
+    top: 0;    
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(to bottom right, rgb(20 19 19), rgb(68 68 68 / 56%));
+}
+
+.media-banner-content {
+    width: 60%;
+    display: flex;
+    gap: 50px;
+    color: var(--white);
+}
+
+.media-banner-poster { 
+    border-radius: 5px;
+}
+
+.media-banner-title span {
+    font-weight: 400;
+}
+
+.media-banner-subtitle {
+    display: flex;
+    gap: 5px;
+}

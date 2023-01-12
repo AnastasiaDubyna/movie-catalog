@@ -7,6 +7,9 @@ import { MOVIES, PEOPLE, searchResultsTabs, TV_SHOWS } from '../../constants';
 import "./searchResultsPage.css";
 import MediaCard from '../../components/mediaCard/MediaCard';
 
+// Обсудить 
+// при обновлении страницы результаты поиска теряются 
+
 const SearchResultsPage = () => {
     const results = useSelector(state => state.mediaReducer.searched);
     const [activeTab, setActiveTab] = useState(MOVIES);
