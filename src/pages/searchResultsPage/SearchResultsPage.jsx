@@ -1,23 +1,28 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Tab, Tabs } from '@mui/material';
 import { nanoid } from 'nanoid';
 import PageBase from "../../components/pageBase/PageBase";
 import { MOVIES, PEOPLE, searchResultsTabs, TV_SHOWS } from '../../constants';
 import "./searchResultsPage.css";
 import MediaCard from '../../components/mediaCard/MediaCard';
-
-// Обсудить 
-// при обновлении страницы результаты поиска теряются 
+import getSearchAction from '../../redux/actions/getSearchAction';
+import queryString from 'query-string'; 
 
 const SearchResultsPage = () => {
     const results = useSelector(state => state.mediaReducer.searched);
     const [activeTab, setActiveTab] = useState(MOVIES);
+    const {query} = queryString.parse(location.search);
+    const dispatch = useDispatch();
     
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
     };
     
+    useEffect(() => {
+        dispatch(getSearchAction(query));
+    }, []);
+
     const getMediaType = () => {
         switch (activeTab) {
             case MOVIES:

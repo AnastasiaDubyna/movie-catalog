@@ -3,7 +3,7 @@ import './App.css';
 import './styles/constants.css';
 import HomePage from './pages/homePage/HomePage';
 import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
-import MoviePage from './pages/moviePage/MoviePage';
+import MediaPage from './containers/mediaPage/MediaPage';
 
 // вынести роут в отдельный файл
 function App() {
@@ -12,7 +12,7 @@ function App() {
 			<Routes>
 				<Route path="/" exact element={<HomePage />} />
 				<Route path="/search" element={<SearchResultsPage />} />
-				<Route path="/movie/:id" element={<MoviePage />} />
+				<Route path="/media" element={<MediaPage />} />
 			</Routes>
 		</Router>
 	);

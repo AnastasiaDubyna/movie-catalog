@@ -1,26 +1,15 @@
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
-import { useNavigate } from "react-router-dom";
 import { mediaTypes} from "../../constants";
 import RatingCircle from "../ratingCircle/RatingCircle";
 import { API_IMG_W154_URL } from "./constants";
 import "./mediaCard.css";
 
-const MediaCard = ({mediaData, withRating}) => {
-    // Думаю, этой логики тут быть не должно, но насколько высоко её закинуть?
-    const navigate = useNavigate();
-
-    // В медиаДата не всегда прописан тип.......шо за жизнь
-    // Обсудить
-    const handleClick = () => {
-        // navigate(`/${mediaData.type}/${mediaData.id}`);
-        navigate(`/movie/${mediaData.id}`);
-    };
-
+const MediaCard = ({mediaData, withRating, onClick}) => {
     return (
-        <div key={nanoid(4)} className="media-card" onClick={handleClick}>
+        <div key={nanoid(4)} className="media-card" onClick={() => onClick(mediaData.id, mediaData.media_type)}>
             <img className="media-image" src={`${API_IMG_W154_URL}${mediaData.poster_path ||mediaData.profile_path}`} />
-            {withRating ? <RatingCircle voteAverage={mediaData.vote_average} /> : null}
+            {withRating && <RatingCircle voteAverage={mediaData.vote_average} />}
             <p className="media-title">{mediaData.title || mediaData.name}</p>
         </div>
     )
@@ -34,9 +23,10 @@ MediaCard.propTypes = {
         title: PropTypes.string,
         name: PropTypes.string,
         vote_average: PropTypes.number,
-        type: PropTypes.oneOf(mediaTypes)
+        media_type: PropTypes.oneOf(mediaTypes)
     }),
-    withRating: PropTypes.bool
+    withRating: PropTypes.bool,
+    onClick: PropTypes.func
 };
 
 MediaCard.defaultProps = {

@@ -9,6 +9,11 @@ export const getMovieById = async (id) => {
     return data;
 };
 
+export const getDataById = async (type, id) => {
+    const {data} = await fetchData(`${API_URL}/${type}/${id}`);
+    return data;
+}
+
 export const getTrending = async (type) => {
     const {data: {results}} = await fetchData(`${API_URL}/trending/all/${type}`);
     return results;
