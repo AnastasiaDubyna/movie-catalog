@@ -3,6 +3,7 @@ import './App.css';
 import './styles/constants.css';
 import HomePage from './pages/homePage/HomePage';
 import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
+import MoviePage from './pages/moviePage/MoviePage';
 
 // вынести роут в отдельный файл
 function App() {
@@ -11,6 +12,7 @@ function App() {
 			<Routes>
 				<Route path="/" exact element={<HomePage />} />
 				<Route path="/search" element={<SearchResultsPage />} />
+				<Route path="/movie/:id" element={<MoviePage />} />
 			</Routes>
 		</Router>
 	);

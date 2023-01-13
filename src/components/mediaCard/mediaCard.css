@@ -1,6 +1,11 @@
 .media-card {
     width: 154px;
 }
+
+.media-card:hover {
+    cursor: pointer;
+}
+
 .carousel-title {
     font-size: 1.75em;
 }

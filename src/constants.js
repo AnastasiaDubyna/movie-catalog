@@ -12,3 +12,8 @@ export const MOVIES = "movies";
 export const TV_SHOWS = "tv shows";
 export const PEOPLE = "people";
 export const searchResultsTabs = [MOVIES, TV_SHOWS, PEOPLE];
+
+export const MOVIE = "movie";
+export const TV = "tv";
+export const PERSON = "person";
+export const mediaTypes = [MOVIE, TV, PERSON];
