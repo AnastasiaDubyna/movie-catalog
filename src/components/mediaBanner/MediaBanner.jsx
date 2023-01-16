@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { API_IMG_ORIGINAL_URL, API_IMG_W300_URL } from "./constants";
+import { API_IMG_ORIGINAL_URL, API_IMG_W300_URL } from "../../constants";
 import "./mediaBanner.css";
 
 const MediaBanner = ({mediaData}) => {
@@ -34,7 +34,10 @@ const MediaBanner = ({mediaData}) => {
 MediaBanner.propTypes = {
     mediaData: PropTypes.shape({
         runtime: PropTypes.number,
-        genres: PropTypes.arrayOf(PropTypes.object),
+        genres: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number, 
+            name: PropTypes.string
+        })),
         release_date: PropTypes.string,
         title: PropTypes.string,
         backdrop_path: PropTypes.string,

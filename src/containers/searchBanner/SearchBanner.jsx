@@ -1,14 +1,11 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { DebounceInput } from "react-debounce-input";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import getSearchAction from "../../redux/actions/getSearchAction";
 import "./searchBanner.css";
 
 const SearchBanner = () => {
     const [searchValue, setSearchValue] = useState("");
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = ({target: {value}}) => {
@@ -16,8 +13,7 @@ const SearchBanner = () => {
     };
 
     const handleSubmit = () => {
-        dispatch(getSearchAction(searchValue));
-        navigate("/search");
+        navigate(`/search?query=${searchValue}`);
     };
 
     return (
