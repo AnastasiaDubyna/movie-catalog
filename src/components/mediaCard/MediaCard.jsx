@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 import { mediaTypes} from "../../constants";
 import RatingCircle from "../ratingCircle/RatingCircle";
@@ -7,9 +6,14 @@ import "./mediaCard.css";
 
 const MediaCard = ({mediaData, withRating, onClick}) => {
     return (
-        <div key={nanoid(4)} className="media-card" onClick={() => onClick(mediaData.id, mediaData.media_type)}>
+        <div className="media-card" onClick={() => onClick(mediaData.id, mediaData.media_type)}>
             <img className="media-image" src={`${API_IMG_W154_URL}${mediaData.poster_path ||mediaData.profile_path}`} />
-            {withRating && <RatingCircle voteAverage={mediaData.vote_average} />}
+            {
+                withRating && 
+                <div className="media-card-rating">
+                    <RatingCircle voteAverage={mediaData.vote_average} />
+                </div>
+            }
             <p className="media-title">{mediaData.title || mediaData.name}</p>
         </div>
     )

@@ -1,5 +1,9 @@
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { API_IMG_ORIGINAL_URL, API_IMG_W300_URL } from "../../constants";
+import IconPopover from '../iconPopover/IconPopover';
+import RatingCircle from "../ratingCircle/RatingCircle";
+import { iconPopovers } from './constants';
 import "./mediaBanner.css";
 
 const MediaBanner = ({mediaData}) => {
@@ -22,6 +26,21 @@ const MediaBanner = ({mediaData}) => {
                         <p>|</p>
                         <p>{runtime} min</p>
                     </div>
+                    <div className="media-banner-icons">
+                        <div className="media-banner-rating">
+                            <RatingCircle
+                                voteAverage={mediaData.vote_average}
+                            />
+                        </div>
+                        <p>User Score</p>
+                        {iconPopovers.map((iconData => 
+                            <IconPopover
+                                icon={iconData.icon}
+                                text={iconData.text}
+                                key={nanoid()}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="media-banner-backdrop">
@@ -41,7 +60,8 @@ MediaBanner.propTypes = {
         release_date: PropTypes.string,
         title: PropTypes.string,
         backdrop_path: PropTypes.string,
-        poster_path: PropTypes.string
+        poster_path: PropTypes.string,
+        vote_average: PropTypes.number
     })
 };
 
