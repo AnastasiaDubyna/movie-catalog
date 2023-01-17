@@ -65,3 +65,13 @@
     overflow-wrap: break-word;
     width: 50px;
 }
+
+.media-banner-tagline {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.685);
+    margin-top: 20px;
+}
+
+.media-banner-description {
+    margin-top: 10px;
+}

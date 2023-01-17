@@ -40,6 +40,11 @@ const MediaBanner = ({mediaData}) => {
                             />
                         ))}
                     </div>
+                    <p className="media-banner-tagline">{mediaData.tagline}</p>
+                    <div className="media-banner-description">
+                        <h2>Overview</h2>
+                        <p>{mediaData.overview}</p>
+                    </div>
                 </div>
             </div>
             <div className="media-banner-backdrop">
@@ -60,8 +65,17 @@ MediaBanner.propTypes = {
         title: PropTypes.string.isRequired,
         backdrop_path: PropTypes.string,
         poster_path: PropTypes.string.isRequired,
-        vote_average: PropTypes.number.isRequired
+        vote_average: PropTypes.number.isRequired,
+        tagline: PropTypes.string,
+        overview: PropTypes.string
     })
+};
+
+MediaBanner.defaultProps = {
+    mediaData: {
+        tagline: " ",
+        overview: " "
+    }
 };
 
 export default MediaBanner;
