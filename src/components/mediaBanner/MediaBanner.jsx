@@ -11,7 +11,6 @@ const MediaBanner = ({mediaData}) => {
     const getGenresString = () => (
         genres.map(genre => genre.name).join(", ")
     );
-    console.log(runtime);
 
     return (
         <div className="media-banner">
@@ -54,14 +53,14 @@ MediaBanner.propTypes = {
     mediaData: PropTypes.shape({
         runtime: PropTypes.number,
         genres: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number, 
-            name: PropTypes.string
+            id: PropTypes.number.isRequired, 
+            name: PropTypes.string.isRequired
         })),
-        release_date: PropTypes.string,
-        title: PropTypes.string,
+        release_date: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
         backdrop_path: PropTypes.string,
-        poster_path: PropTypes.string,
-        vote_average: PropTypes.number
+        poster_path: PropTypes.string.isRequired,
+        vote_average: PropTypes.number.isRequired
     })
 };
 

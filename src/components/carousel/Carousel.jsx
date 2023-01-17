@@ -17,7 +17,14 @@ const Carousel = ({ title, tabs, media, activeTab, onTabChange, mediaType, onMed
                         onChange={onTabChange}
                         id="carousel-tabs"
                     >
-                        { tabs.map(tab => <Tab className="carousel-tab" label={tab} value={tab} key={nanoid(3)} />) }
+                        { tabs.map(tab => 
+                            <Tab 
+                                className="carousel-tab" 
+                                label={tab} 
+                                value={tab} 
+                                key={nanoid(3)} 
+                            />
+                        ) }
                     </Tabs>
                 </div>
                 <div className="carousel-media">
@@ -43,16 +50,16 @@ Carousel.propTypes = {
     activeTab: PropTypes.string.isRequired,
     onTabChange: PropTypes.func.isRequired,
     media: PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.number,
+        id:PropTypes.number.isRequired,
         poster_path: PropTypes.string,
         profile_path: PropTypes.string,
         title: PropTypes.string,
         name: PropTypes.string,
         vote_average: PropTypes.number,
-        media_type: PropTypes.oneOf(mediaTypes)
+        media_type: PropTypes.oneOf(mediaTypes).isRequired
     })),
     mediaType: PropTypes.oneOf(mediaTypes),
-    onMediaCardClick: PropTypes.func
+    onMediaCardClick: PropTypes.func.isRequired
 };
 
 export default Carousel;
