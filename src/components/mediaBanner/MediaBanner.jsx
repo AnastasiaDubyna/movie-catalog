@@ -11,7 +11,7 @@ const MediaBanner = ({mediaData}) => {
     const getGenresString = () => (
         genres.map(genre => genre.name).join(", ")
     );
-
+    console.log(mediaData);
     return (
         <div className="media-banner">
             <div className="media-banner-content">

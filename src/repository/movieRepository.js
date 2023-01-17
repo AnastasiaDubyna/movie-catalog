@@ -5,7 +5,12 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const getMovieById = async (id) => {
     const {data} = await fetchData(`${API_URL}/movie/${id}`);
+    return data;
+};
 
+export const getCreditsById = async (type, id) => {
+    const endpoint = type === "person" ? "combined_credits" : "credits";
+    const {data} = await fetchData(`${API_URL}/${type}/${id}/${endpoint}`);
     return data;
 };
 
