@@ -26,7 +26,7 @@
     top: 0;    
     width: 100%; 
     height: 100%;
-    background: linear-gradient(to bottom right, rgb(20 19 19), rgb(68 68 68 / 56%));
+    background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(68 68 68 / 56%));
 }
 
 .media-banner-content {
@@ -47,4 +47,21 @@
 .media-banner-subtitle {
     display: flex;
     gap: 5px;
+}
+
+.media-banner-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.media-banner-rating {
+    height: 80px;
+    width: 80px;
+}
+
+.media-banner-icons p {
+    overflow-wrap: break-word;
+    width: 50px;
 }

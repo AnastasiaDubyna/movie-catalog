@@ -19,10 +19,10 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handlePopularCarouselTabChange = (event, newValue) => {
+    const handlePopularCarouselTabChange = (_, newValue) => {
         setPopularCarouselActiveTab(newValue);
     };
-    const handleTrendingCarouselTabChange = (event, newValue) => {
+    const handleTrendingCarouselTabChange = (_, newValue) => {
         setTrendingCarouselActiveTab(newValue);
     };
     const handleMediaCardClick = (id, type) => {

@@ -6,28 +6,26 @@ import Search from "../search/Search";
 import { headerTabs } from "./constants";
 import "./header.css";
 
-const Header = () => {
-    return (
-        <div className="header-container">
-            <Grid container className="header-grid" sx={{width: "60%"}}>
-                <Grid item  xs={5} sm={6} md={7} lg={1}>
-                    <Logo />
-                </Grid>
-                {
-                    headerTabs.map(
-                        tabObj => (
-                            <Grid container item  xs={5} sm={6} md={7} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
-                                <Link to={tabObj.path}>{tabObj.name}</Link>
-                            </Grid>
-                        )
-                    )
-                }
-                <Grid container item  xs={5} sm={6} md={7} lg={8} justifyContent="flex-end">
-                    <Search className="header-search"/>
-                </Grid>
+const Header = () => (
+    <div className="header-container">
+        <Grid container className="header-grid" sx={{width: "60%"}}>
+            <Grid item  xs={5} sm={6} md={7} lg={1}>
+                <Logo />
             </Grid>
-        </div>
-    )
-};
+            {
+                headerTabs.map(
+                    tabObj => (
+                        <Grid container item  xs={5} sm={6} md={7} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
+                            <Link to={tabObj.path}>{tabObj.name}</Link>
+                        </Grid>
+                    )
+                )
+            }
+            <Grid container item  xs={5} sm={6} md={7} lg={8} justifyContent="flex-end">
+                <Search className="header-search"/>
+            </Grid>
+        </Grid>
+    </div>
+);
 
 export default Header;
