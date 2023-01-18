@@ -8,7 +8,7 @@ import "./header.css";
 
 const Header = () => (
     <div className="header-container">
-        <Grid container className="header-grid" sx={{width: "60%"}}>
+        <Grid container className="header-grid" sx={{width: "67%"}}>
             <Grid item  xs={5} sm={6} md={7} lg={1}>
                 <Logo />
             </Grid>
