@@ -14,10 +14,17 @@ export const getCreditsById = async (type, id) => {
     return data;
 };
 
+export const getKeyWordsById = async (type, id) => {
+    const {data} = await fetchData(`${API_URL}/${type}/${id}/keywords`);
+    console.log("repository");
+    console.log(data);
+    return data;
+};
+
 export const getDataById = async (type, id) => {
     const {data} = await fetchData(`${API_URL}/${type}/${id}`);
     return data;
-}
+};
 
 export const getTrending = async (type) => {
     const {data: {results}} = await fetchData(`${API_URL}/trending/all/${type}`);

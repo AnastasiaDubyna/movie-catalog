@@ -1,7 +1,11 @@
 .cast-card { 
-    min-width: 154px;
+    min-width: 130px;
+}
+
+.cast-card-name {
+    font-weight: 600;
 }
 
 .cast-card img {
-    width: 154px;
+    width: 130px;
 }

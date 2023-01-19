@@ -1,0 +1,16 @@
+.movie-page-content {
+    gap: 20px;
+}
+
+.movie-page-side-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.movie-page-side-info .title {
+    font-weight: 600;
+}
+
+.movie-page-main-content {
+    gap: 20px
+}

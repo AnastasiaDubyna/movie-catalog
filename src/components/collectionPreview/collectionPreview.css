@@ -1,0 +1,49 @@
+
+.collection-preview {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.collection-preview::after {
+    content: '';
+    position: absolute;
+    left: 0; 
+    top: 0;    
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(68 68 68 / 56%));
+}
+
+.collection-preview img {
+    width: 100%;
+}
+
+.collection-preview h2 {
+    color: var(--white);
+    font-weight: 400;
+    font-size: 1.8em;
+}
+
+.collection-preview button {
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+.collection-preview button:hover {
+    cursor: pointer;
+}
+
+.collection-preview div {
+    position: absolute;
+    top: 71px;
+    left: 33px;
+    z-index: 10;
+}
