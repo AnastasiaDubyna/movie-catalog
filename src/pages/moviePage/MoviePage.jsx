@@ -6,6 +6,8 @@ import { Grid } from "@mui/material";
 import "./moviePage.css";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 import Keywords from "../../components/keywords/Keywords";
+import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
+import { reviews } from "../../dummyData";
 
 const MoviePage = ({data, creditsData, keywords}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
@@ -23,7 +25,8 @@ const MoviePage = ({data, creditsData, keywords}) => {
                 <Grid container item  xs={12} sm={12} md={12} lg={8} justifyContent="space-between">
                     <Grid container item xs={12} sm={12} md={12} lg={9} className="movie-page-main-content">
                         <CastCarousel castData={mainActors} />
-                        <CollectionPreview collectionData={belongs_to_collection} />
+                        {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
+                        <ReviewsSection reviews={reviews}/>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={2} id="movie-page-side-section">
                         <div className="movie-page-side-info">

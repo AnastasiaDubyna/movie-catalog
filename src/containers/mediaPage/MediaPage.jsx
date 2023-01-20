@@ -8,6 +8,9 @@ import useFetchKeywords from '../../query/useFetchKeywords';
 
 
 const MediaPage = () => {
+    // Разобраться нормально с реакт квери т.к. данные появляются только после обновы страницы
+    // Запускает ли смена статуса isLoading посторный рендеринг компонента? (походу нет)
+    // Как собрать воедино все загрузки и возвращать компонент только когда все данные на месте?
     const {type, id} = queryString.parse(location.search);
     const {isLoading, error, data} = useFetchData(type, id);
     const {creditsData} = useFetchCredits(type, id);
