@@ -11,12 +11,14 @@ const RatingCircle = ({voteAverage}) => {
         if (percentage >= 70) return "high";
         return "moderate" 
     }
-    if (!isNaN(voteAverage)) {
-        return (
-            <CircularProgressbar className={getColorClass()} value={percentage} text={`${percentage}%`} />
-        )
-    }
-    return null;
+
+    return (
+        <CircularProgressbar 
+            className={getColorClass()} 
+            value={percentage} 
+            text={`${percentage}%`} 
+        />
+    )
 };
 
 RatingCircle.propTypes = {

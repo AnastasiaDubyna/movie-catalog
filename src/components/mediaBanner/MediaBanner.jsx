@@ -8,16 +8,17 @@ import "./mediaBanner.css";
 
 const MediaBanner = ({mediaData}) => {
     const {title, backdrop_path, poster_path, release_date, genres, runtime} = mediaData;
+    const releaseYear = release_date.substring(0, 4);
     const getGenresString = () => (
         genres.map(genre => genre.name).join(", ")
     );
-    console.log(mediaData);
+
     return (
         <div className="media-banner">
             <div className="media-banner-content">
                 <img src={`${API_IMG_W300_URL}${poster_path}`} className="media-banner-poster" />
                 <div className="media-banner-overview">
-                    <h1 className="media-banner-title">{title} <span>({release_date.substring(0, 4)})</span></h1>
+                    <h1 className="media-banner-title">{title} <span>({releaseYear})</span></h1>
                     <div className="media-banner-subtitle">
                         <p>{release_date}</p>
                         <p>|</p> 
@@ -73,8 +74,8 @@ MediaBanner.propTypes = {
 
 MediaBanner.defaultProps = {
     mediaData: {
-        tagline: " ",
-        overview: " "
+        tagline: "",
+        overview: ""
     }
 };
 

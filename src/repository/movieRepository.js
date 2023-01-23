@@ -16,8 +16,6 @@ export const getCreditsById = async (type, id) => {
 
 export const getKeyWordsById = async (type, id) => {
     const {data} = await fetchData(`${API_URL}/${type}/${id}/keywords`);
-    console.log("repository");
-    console.log(data);
     return data;
 };
 

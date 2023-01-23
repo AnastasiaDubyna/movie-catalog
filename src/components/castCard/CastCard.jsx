@@ -24,13 +24,13 @@ CastCard.propTypes = {
         name: PropTypes.string.isRequired,
         profile_path: PropTypes.string,
         character: PropTypes.string.isRequired
-    })
+    }).isRequired
 };
 
 // запилить какую-то дефотную картинку
 CastCard.defaultProps = {
     data: {
-        profile_path: " "
+        profile_path: ""
     }
 };
 
