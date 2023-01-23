@@ -12,15 +12,11 @@ const Header = () => (
             <Grid item  xs={5} sm={6} md={7} lg={1}>
                 <Logo />
             </Grid>
-            {
-                headerTabs.map(
-                    tabObj => (
-                        <Grid container item  xs={5} sm={6} md={7} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
-                            <Link to={tabObj.path}>{tabObj.name}</Link>
-                        </Grid>
-                    )
-                )
-            }
+            {headerTabs.map(tabObj => (
+                <Grid container item  xs={5} sm={6} md={7} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
+                    <Link to={tabObj.path}>{tabObj.name}</Link>
+                </Grid>
+            ))}
             <Grid container item  xs={5} sm={6} md={7} lg={8} justifyContent="flex-end">
                 <Search className="header-search"/>
             </Grid>

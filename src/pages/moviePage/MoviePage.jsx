@@ -9,10 +9,11 @@ import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import { reviews } from "../../dummyData";
 
-const MoviePage = ({data, creditsData, keywords}) => {
+const MoviePage = ({data, creditsData, getKeywords}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
     const mainActors = creditsData.cast.slice(0, 10);
+    const keywords = getKeywords();
 
     return (
         <PageBase>
@@ -77,10 +78,7 @@ MoviePage.propTypes = {
             character: PropTypes.string
         })).isRequired
     }).isRequired, 
-    keywords: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired, 
-        id: PropTypes.number.isRequired
-    }))
+    getKeywords: PropTypes.func
 };
 
 export default MoviePage;
