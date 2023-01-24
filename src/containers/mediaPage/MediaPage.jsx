@@ -14,7 +14,10 @@ const MediaPage = () => {
 
     const getKeywords = () => {
         const {keywordsData} = useFetchKeywords(type, id);
-        return keywordsData.keywords;
+        if (keywordsData) {
+            return keywordsData.keywords;
+        }
+        return [];
     };
 
     if (isLoading) {

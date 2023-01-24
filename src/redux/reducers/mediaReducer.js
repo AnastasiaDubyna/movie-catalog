@@ -3,7 +3,7 @@ import { GET_POPULAR, GET_SEARCH, GET_TRENDING } from "../constants";
 const defaultState = {
     trending: [],
     popular: [],
-    searched: []
+    searched: {}
 } 
 
 const mediaReducer = (state = defaultState, {type, payload}) => {
@@ -21,7 +21,7 @@ const mediaReducer = (state = defaultState, {type, payload}) => {
         case GET_SEARCH:
             return {
                 ...state,
-                searched: [...payload.data]
+                searched: {...payload.data}
             };
         default: 
             return state;

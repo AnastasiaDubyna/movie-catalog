@@ -34,9 +34,9 @@ export const getPopular = async (type) => {
     return results;
 };
 
-export const getSearch = async (query) => {
-    const {data: {results}} = await fetchData(`${API_URL}/search/multi?query=${query}`);
-    return results;
+export const getSearch = async (query, type, page) => {
+    const {data} = await fetchData(`${API_URL}/search/${type}?query=${query}&page=${page}`);
+    return data;
 };
 
 // const getConfigurations = async () => {
