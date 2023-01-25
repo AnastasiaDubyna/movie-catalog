@@ -1,44 +1,45 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Tab, Tabs } from '@mui/material';
+import { Grid, Pagination, Tab, Tabs } from '@mui/material';
 import { nanoid } from 'nanoid';
 import PageBase from "../../components/pageBase/PageBase";
-import { MOVIES, PEOPLE, searchResultsTabs, TV_SHOWS } from '../../constants';
+import { MOVIE, MOVIES, PEOPLE, PERSON, searchResultsTabs, TV, TV_SHOWS } from '../../constants';
 import "./searchResultsPage.css";
 import MediaCard from '../../components/mediaCard/MediaCard';
 import getSearchAction from '../../redux/actions/getSearchAction';
 import queryString from 'query-string'; 
 
 const SearchResultsPage = () => {
-    const results = useSelector(state => state.mediaReducer.searched);
+    const {results, total_pages} = useSelector(state => state.mediaReducer.searched);
     const [activeTab, setActiveTab] = useState(MOVIES);
+    const [activePage, setActivePage] = useState(1);
     const {query} = queryString.parse(location.search);
     const dispatch = useDispatch();
-    
-    const handleTabChange = (event, newValue) => {
+
+    const handleTabChange = (_, newValue) => {
         setActiveTab(newValue);
+        setActivePage(1);
+    };
+
+    const handlePageChange = (_, value) => {
+        setActivePage(value);
     };
     
     useEffect(() => {
-        dispatch(getSearchAction(query));
-    }, []);
+        const type = getMediaType();
+        dispatch(getSearchAction(query, type, activePage));
+    }, [activeTab, activePage]);
 
     const getMediaType = () => {
         switch (activeTab) {
             case MOVIES:
-                return "movie";
-                case TV_SHOWS:
-                    return "tv";
-                    case PEOPLE:
-                        return "person";
-                    }
-                };
-                
-    const getResultsForActiveTab = () => {
-        const requiredType = getMediaType();
-        return results.filter(resObj => resObj.media_type === requiredType);
+                return MOVIE;
+            case TV_SHOWS:
+                return TV;
+            case PEOPLE:
+                return PERSON;
+        }
     };
-    const filteredResults = getResultsForActiveTab();
                  
     return (
         <PageBase>
@@ -53,14 +54,21 @@ const SearchResultsPage = () => {
                         searchResultsTabs.map(tab => <Tab label={tab} value={tab} key={nanoid(3)} />)
                     }
                 </Tabs>
-                <Grid container spacing={2} className="search-results-container">
+                <Grid container id="search-results-container">
                     {
-                        filteredResults.map(resObj => (
+                        results && results.map(resObj => (
                             <Grid item key={nanoid(3)}>
                                 <MediaCard mediaData={resObj} /> 
                             </Grid>
                         ))
                     }
+                    <Grid item container justifyContent="center" id="search-results-pagination">
+                        <Pagination 
+                            count={total_pages} 
+                            page={activePage} 
+                            onChange={handlePageChange}
+                        />
+                    </Grid>
                 </Grid>
             </div>
         </PageBase>
