@@ -1,18 +1,30 @@
+import { Avatar, Rating } from "@mui/material";
 import PropTypes from "prop-types";
+import ReadMoreReact from 'read-more-react';
 import "./review.css";
 
 const Review = ({review}) => {
     console.log(review);
-    const {title, username, date, content} = review;
+    const {title, username, date, content, grade} = review;
+    const defaultTitle = `Review by ${username}`;
     // Сделать дату более прилично выглядящей 
     return (
         <div className="review">
             <div className="review-header">
-                <p className="review-title">{title}</p>
-                <p>posted by {username} on {date}</p> 
+                <Avatar alt={username} src="">{username[0].toUpperCase()}</Avatar>
+                <div>
+                    <p className="review-title">{title || defaultTitle}</p>
+                    <p>posted by {username} on {date}</p> 
+                </div>
+                <Rating className="review-header-rating" value={grade} readOnly />
             </div>
             <div className="review-content">
-                <p>{content}</p>
+                <ReadMoreReact 
+                    text={content} 
+                    min={400}
+                    ideal={500}
+                    max={600}
+                />
             </div>
         </div>
     );
@@ -23,8 +35,15 @@ Review.propTypes = {
         username: PropTypes.string,
         date: PropTypes.date, 
         title: PropTypes.string,
-        content: PropTypes.string
+        content: PropTypes.string,
+        grade: PropTypes.number
     }).isRequired
 };
+
+Review.defaultProps = {
+    review: {
+        grade: 0
+    }
+}
 
 export default Review;
