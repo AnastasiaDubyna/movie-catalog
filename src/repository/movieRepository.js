@@ -2,6 +2,12 @@ import { fetchData } from "../api"
 import { popularMediaUrl } from "./constants.js";
 
 const API_URL = process.env.REACT_APP_API_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+export const getReviewsById = async (id) => {
+    const response = await fetchData(`${SERVER_URL}/review/all/${id}`);
+    return response;
+}
 
 export const getMovieById = async (id) => {
     const {data} = await fetchData(`${API_URL}/movie/${id}`);

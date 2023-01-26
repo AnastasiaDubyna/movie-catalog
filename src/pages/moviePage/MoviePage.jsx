@@ -7,13 +7,16 @@ import "./moviePage.css";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
-import { reviews } from "../../dummyData";
+import ReviewForm from "../../components/reviewForm/ReviewForm";
+// import {reviews} from "../../dummyData";
 
-const MoviePage = ({data, creditsData, getKeywords}) => {
+const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
-    const mainActors = creditsData.cast.slice(0, 10);
+    const mainActors = creditsData && creditsData.cast.slice(0, 10);
     const keywords = getKeywords();
+    const reviews = getReviews();
+    console.log(reviews);
 
     return (
         <PageBase>
@@ -26,6 +29,14 @@ const MoviePage = ({data, creditsData, getKeywords}) => {
                 <Grid container item  xs={12} sm={12} md={12} lg={8} justifyContent="space-between">
                     <Grid container item xs={12} sm={12} md={12} lg={9} className="movie-page-main-content">
                         <CastCarousel castData={mainActors} />
+                        <ReviewForm
+                            title={reviewFormTitle}
+                            content={reviewFormContent}
+                            grade={reviewFormGrade}
+                            onCTexthage={onReviewFormTextChange}
+                            onGradeChange={onReviewFormGradeChange}
+                            onSubmit={onReviewFormSubmit}
+                        />
                         <ReviewsSection reviews={reviews}/>
                         {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                     </Grid>
@@ -78,7 +89,14 @@ MoviePage.propTypes = {
             character: PropTypes.string
         })).isRequired
     }).isRequired, 
-    getKeywords: PropTypes.func
+    getKeywords: PropTypes.func,
+    getReviews: PropTypes.func,
+    reviewFormTitle: PropTypes.string, 
+    reviewFormContent: PropTypes.string, 
+    reviewFormGrade: PropTypes.number, 
+    onReviewFormTextChange: PropTypes.func, 
+    onReviewFormGradeChange: PropTypes.func, 
+    onReviewFormSubmit: PropTypes.func
 };
 
 export default MoviePage;

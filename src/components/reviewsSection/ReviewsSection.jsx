@@ -7,11 +7,13 @@ import "./reviewsSection.css";
 
 const ReviewsSection = ({reviews}) => {
     const [showAllReviews, setShowAllReviews] = useState(false);
-    const count = reviews.length;
+    const count = reviews ? reviews.length : 0;
     const firstReview = reviews[0];
     const handleClick = () => {
         setShowAllReviews(true);
     };
+
+    console.log(reviews);
 
     return (
         <div className="reviews-section">
