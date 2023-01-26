@@ -1,10 +1,17 @@
 .review {
     border: 1px solid var(--light-grey);
     border-radius: 5px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    padding: 20px 25px;
 }
 .review-header {
-    background-color: var(--light-grey);
-    padding: 10px 20px;
+    display: flex;
+    gap: 17px;
+    align-items: center;
+}
+
+.review-header-rating {
+    align-self: flex-start;
 }
 
 .review-title {
@@ -13,5 +20,14 @@
 }
 
 .review-content {
-    padding: 10px 20px;
+    padding-left: 56px;
+    padding-top: 17px;
+}
+
+.read-more-button {
+    text-decoration: underline;
+}
+
+.read-more-button:hover {
+    cursor: pointer;
 }

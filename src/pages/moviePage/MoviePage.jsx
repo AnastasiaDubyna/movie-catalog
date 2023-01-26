@@ -26,8 +26,8 @@ const MoviePage = ({data, creditsData, getKeywords}) => {
                 <Grid container item  xs={12} sm={12} md={12} lg={8} justifyContent="space-between">
                     <Grid container item xs={12} sm={12} md={12} lg={9} className="movie-page-main-content">
                         <CastCarousel castData={mainActors} />
-                        {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                         <ReviewsSection reviews={reviews}/>
+                        {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={2} id="movie-page-side-section">
                         <div className="movie-page-side-info">
