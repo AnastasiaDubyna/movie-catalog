@@ -7,11 +7,12 @@ const Review = ({review}) => {
     console.log(review);
     const {title, username, date, content, grade} = review;
     const defaultTitle = `Review by ${username}`;
+    const usernameFirsLetter = username[0].toUpperCase();
     // Сделать дату более прилично выглядящей 
     return (
         <div className="review">
             <div className="review-header">
-                <Avatar alt={username} src="">{username[0].toUpperCase()}</Avatar>
+                <Avatar alt={username} src="">{usernameFirsLetter}</Avatar>
                 <div>
                     <p className="review-title">{title || defaultTitle}</p>
                     <p>posted by {username} on {date}</p> 

@@ -8,6 +8,7 @@ import "./reviewsSection.css";
 const ReviewsSection = ({reviews}) => {
     const [showAllReviews, setShowAllReviews] = useState(false);
     const count = reviews.length;
+    const firstReview = reviews[0];
     const handleClick = () => {
         setShowAllReviews(true);
     };
@@ -19,7 +20,7 @@ const ReviewsSection = ({reviews}) => {
                 showAllReviews
                 ? reviews.map((review => <Review review={review} key={nanoid()} />))
                 : <>
-                    <Review review={reviews[0]}/>
+                    <Review review={firstReview}/>
                     <Button onClick={handleClick}>Show All Reviews</Button>
                 </>        
             }
