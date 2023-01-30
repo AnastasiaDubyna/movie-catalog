@@ -8,6 +8,12 @@
     color: var(--dark-blue);
     font-family: var(--main-font-family);
     font-weight: 600;
+    width: 200px;
+    align-self: center;
+}
+
+.reviews-section button:hover {
+    background-color: rgba(var(--dark-grey-numeric), 0.5);
 }
 
 .reviews-section-title {

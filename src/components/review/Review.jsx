@@ -4,31 +4,35 @@ import ReadMoreReact from 'read-more-react';
 import "./review.css";
 
 const Review = ({review}) => {
-    console.log(review);
-    const {title, username, date, content, grade} = review;
-    const defaultTitle = `Review by ${username}`;
-    const usernameFirsLetter = username[0].toUpperCase();
-    // Сделать дату более прилично выглядящей 
-    return (
-        <div className="review">
-            <div className="review-header">
-                <Avatar alt={username} src="">{usernameFirsLetter}</Avatar>
-                <div>
-                    <p className="review-title">{title || defaultTitle}</p>
-                    <p>posted by {username} on {date}</p> 
+    if (review) {
+        const {title, username, date, content, grade} = review;
+        const defaultTitle = `Review by ${username}`;
+        const usernameFirsLetter = username[0].toUpperCase();
+        // Сделать дату более прилично выглядящей 
+    
+        return (
+            <div className="review">
+                <div className="review-header">
+                    <Avatar alt={username} src="">{usernameFirsLetter}</Avatar>
+                    <div>
+                        <p className="review-title">{title || defaultTitle}</p>
+                        <p>posted by {username} on {date}</p> 
+                    </div>
+                    <Rating className="review-header-rating" value={grade} readOnly />
                 </div>
-                <Rating className="review-header-rating" value={grade} readOnly />
+                <div className="review-content">
+                    <ReadMoreReact 
+                        text={content} 
+                        min={400}
+                        ideal={500}
+                        max={600}
+                    />
+                </div>
             </div>
-            <div className="review-content">
-                <ReadMoreReact 
-                    text={content} 
-                    min={400}
-                    ideal={500}
-                    max={600}
-                />
-            </div>
-        </div>
-    );
+        );
+    }
+
+    return null;
 };
 
 Review.propTypes = {
@@ -40,11 +44,5 @@ Review.propTypes = {
         grade: PropTypes.number
     }).isRequired
 };
-
-Review.defaultProps = {
-    review: {
-        grade: 0
-    }
-}
 
 export default Review;

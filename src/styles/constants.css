@@ -11,6 +11,9 @@
     --yellow: rgb(252, 252, 10);
     --black: rgb(0, 0, 0);
     /* font weights */
+
+    --dark-blue-numeric: 3, 37, 65;
+    --dark-grey-numeric: 59, 59, 59;
     
     --main-font-family: 'Source Sans Pro', sans-serif;
 }
