@@ -2,21 +2,19 @@ import PropTypes from "prop-types";
 import PageBase from "../../components/pageBase/PageBase";
 import MediaBanner from "../../components/mediaBanner/MediaBanner";
 import CastCarousel from "../../components/castCarousel/CastCarousel";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import "./moviePage.css";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
-// import {reviews} from "../../dummyData";
 
-const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
+const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
     const mainActors = creditsData && creditsData.cast.slice(0, 10);
-    const keywords = getKeywords();
-    const reviews = getReviews();
-    console.log(reviews);
+    const {isLoadingKeywords, keywordsError, keywordsData} = getKeywords();
+    const {isLoadingReviews, reviewsError, reviewsData} = getReviews();
 
     return (
         <PageBase>
@@ -33,11 +31,20 @@ const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle,
                             title={reviewFormTitle}
                             content={reviewFormContent}
                             grade={reviewFormGrade}
-                            onCTexthage={onReviewFormTextChange}
+                            username={reviewFormUsername}
+                            onTextChange={onReviewFormTextChange}
                             onGradeChange={onReviewFormGradeChange}
                             onSubmit={onReviewFormSubmit}
                         />
-                        <ReviewsSection reviews={reviews}/>
+                        {
+                            isLoadingReviews
+                                ? (
+                                    reviewsError
+                                        ? <h1>Error</h1>
+                                        : <CircularProgress />
+                                )
+                                : <ReviewsSection reviews={reviewsData.data}/>
+                        }
                         {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={2} id="movie-page-side-section">
@@ -60,7 +67,16 @@ const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle,
                             </div>
                             <div>
                                 <p className="title">Keywords</p>
-                                <Keywords keywords={keywords} /> 
+                                {
+                                    // не отлавливается коннекшн эррор. Почему?
+                                    isLoadingKeywords 
+                                        ? (
+                                            keywordsError
+                                            ? <h1>Error</h1>
+                                            : <CircularProgress /> 
+                                        )
+                                        : <Keywords keywords={keywordsData.keywords} /> 
+                                }
                             </div>
                         </div> 
                     </Grid>
@@ -94,6 +110,7 @@ MoviePage.propTypes = {
     reviewFormTitle: PropTypes.string, 
     reviewFormContent: PropTypes.string, 
     reviewFormGrade: PropTypes.number, 
+    reviewFormUsername: PropTypes.string,
     onReviewFormTextChange: PropTypes.func, 
     onReviewFormGradeChange: PropTypes.func, 
     onReviewFormSubmit: PropTypes.func
