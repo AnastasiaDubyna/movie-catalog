@@ -46,8 +46,6 @@ export const getSearch = async (query, type, page) => {
 };
 
 export const postReview = async ({id, newReview}) => {
-    console.log(id);
-    console.log(newReview);
     const {data: {success}} = await postData(`${SERVER_URL}/review/add`, {id, newReview});
     return success;
 }

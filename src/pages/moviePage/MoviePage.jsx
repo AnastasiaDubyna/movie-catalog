@@ -9,12 +9,12 @@ import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
 
-const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
+const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
     const mainActors = creditsData && creditsData.cast.slice(0, 10);
-    const {isLoadingKeywords, keywordsError, keywordsData} = getKeywords();
-    const {isLoadingReviews, reviewsError, reviewsData} = getReviews();
+    const {isLoadingKeywords, keywordsError, keywordsData} = keywordsQuery;
+    const {isLoadingReviews, reviewsError, reviewsData} = reviewsQuery;
 
     return (
         <PageBase>
@@ -68,7 +68,6 @@ const MoviePage = ({data, creditsData, getKeywords, getReviews, reviewFormTitle,
                             <div>
                                 <p className="title">Keywords</p>
                                 {
-                                    // не отлавливается коннекшн эррор. Почему?
                                     isLoadingKeywords 
                                         ? (
                                             keywordsError
@@ -105,8 +104,16 @@ MoviePage.propTypes = {
             character: PropTypes.string
         })).isRequired
     }).isRequired, 
-    getKeywords: PropTypes.func,
-    getReviews: PropTypes.func,
+    keywordsQuery: PropTypes.shape({
+        isLoadingKeywords: PropTypes.bool, 
+        keywordsError: PropTypes.any, //Какой тут должен быть тип? 
+        keywordsData: PropTypes.object
+    }),
+    reviewsQuery: PropTypes.shape({
+        isLoadingReviews: PropTypes.bool, 
+        reviewsError: PropTypes.any, 
+        reviewsData: PropTypes.object
+    }),
     reviewFormTitle: PropTypes.string, 
     reviewFormContent: PropTypes.string, 
     reviewFormGrade: PropTypes.number, 

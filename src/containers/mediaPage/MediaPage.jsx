@@ -20,7 +20,8 @@ const MediaPage = () => {
     const [reviewFormGrade, setReviewFormGrade] = useState(0);
     const [reviewFormUsername, setReviewFormUsername] = useState("");
     const {mutate: postReview} = usePostReview();
-    // const queryClient = useQueryClient();
+    const keywordsQuery = useFetchKeywords(type, id);
+    const reviewsQuery = useFetchReviews(id, type);
 
 
 
@@ -64,16 +65,6 @@ const MediaPage = () => {
         setReviewFormUsername("");
     };
 
-    // Повыносить наверх
-    const getKeywords = () => {
-        return useFetchKeywords(type, id);
-
-    };
-
-    const getReviews = () => {
-        return useFetchReviews(id);
-    };
-
     if (isLoading) {
         return <CircularProgress />
     }
@@ -89,8 +80,8 @@ const MediaPage = () => {
                     <MoviePage 
                         data={data} 
                         creditsData={creditsData}
-                        getKeywords={getKeywords}
-                        getReviews={getReviews}
+                        keywordsQuery={keywordsQuery}
+                        reviewsQuery={reviewsQuery}
                         reviewFormTitle={reviewFormTitle}
                         reviewFormContent={reviewFormContent}
                         reviewFormGrade={reviewFormGrade}
