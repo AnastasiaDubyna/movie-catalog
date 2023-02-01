@@ -4,6 +4,7 @@ import './styles/constants.css';
 import HomePage from './pages/homePage/HomePage';
 import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
 import MediaPage from './containers/mediaPage/MediaPage';
+import ErrorPage from './pages/errorPage/ErrorPage';
 
 // вынести роут в отдельный файл
 function App() {
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/" exact element={<HomePage />} />
 				<Route path="/search" element={<SearchResultsPage />} />
 				<Route path="/media" element={<MediaPage />} />
+				<Route path="/error" element={<ErrorPage />} />
 			</Routes>
 		</Router>
 	);

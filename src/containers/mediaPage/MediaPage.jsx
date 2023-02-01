@@ -1,6 +1,7 @@
 import { CircularProgress } from '@mui/material';
 import queryString from 'query-string'; 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { useQueryClient } from 'react-query';
 import { MOVIE } from '../../constants';
 import MoviePage from '../../pages/moviePage/MoviePage';
@@ -22,6 +23,7 @@ const MediaPage = () => {
     const {mutate: postReview} = usePostReview();
     const keywordsQuery = useFetchKeywords(type, id);
     const reviewsQuery = useFetchReviews(id, type);
+    const navigate = useNavigate();
 
 
 
@@ -65,6 +67,10 @@ const MediaPage = () => {
         setReviewFormUsername("");
     };
 
+    const handleLoadingError = () => {
+        navigate("/error");
+    };
+
     if (isLoading) {
         return <CircularProgress />
     }
@@ -89,6 +95,7 @@ const MediaPage = () => {
                         onReviewFormTextChange={handleReviewFormTextChange}
                         onReviewFormGradeChange={handleReviewFormGradeChange}
                         onReviewFormSubmit={handleReviewFormSubmit}
+                        onLoadingError={handleLoadingError}
                     />
                 )
         }

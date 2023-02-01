@@ -9,7 +9,7 @@ import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
 
-const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
+const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit, onLoadingError}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
     const mainActors = creditsData && creditsData.cast.slice(0, 10);
@@ -36,11 +36,11 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                             onGradeChange={onReviewFormGradeChange}
                             onSubmit={onReviewFormSubmit}
                         />
-                        {
-                            isLoadingReviews
+                        { 
+                            isLoadingReviews //<------------------------?
                                 ? (
                                     reviewsError
-                                        ? <h1>Error</h1>
+                                        ? onLoadingError()
                                         : <CircularProgress />
                                 )
                                 : <ReviewsSection reviews={reviewsData.data}/>
@@ -71,7 +71,7 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                                     isLoadingKeywords 
                                         ? (
                                             keywordsError
-                                            ? <h1>Error</h1>
+                                            ? onLoadingError()
                                             : <CircularProgress /> 
                                         )
                                         : <Keywords keywords={keywordsData.keywords} /> 
@@ -108,19 +108,20 @@ MoviePage.propTypes = {
         isLoadingKeywords: PropTypes.bool, 
         keywordsError: PropTypes.any, //Какой тут должен быть тип? 
         keywordsData: PropTypes.object
-    }),
+    }).isRequired,
     reviewsQuery: PropTypes.shape({
         isLoadingReviews: PropTypes.bool, 
         reviewsError: PropTypes.any, 
         reviewsData: PropTypes.object
-    }),
-    reviewFormTitle: PropTypes.string, 
-    reviewFormContent: PropTypes.string, 
-    reviewFormGrade: PropTypes.number, 
-    reviewFormUsername: PropTypes.string,
-    onReviewFormTextChange: PropTypes.func, 
-    onReviewFormGradeChange: PropTypes.func, 
-    onReviewFormSubmit: PropTypes.func
+    }).isRequired,
+    reviewFormTitle: PropTypes.string.isRequired, 
+    reviewFormContent: PropTypes.string.isRequired, 
+    reviewFormGrade: PropTypes.number.isRequired, 
+    reviewFormUsername: PropTypes.string.isRequired,
+    onReviewFormTextChange: PropTypes.func.isRequired, 
+    onReviewFormGradeChange: PropTypes.func.isRequired, 
+    onReviewFormSubmit: PropTypes.func.isRequired,
+    onLoadingError: PropTypes.func.isRequired
 };
 
 export default MoviePage;
