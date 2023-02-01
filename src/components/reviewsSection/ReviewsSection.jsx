@@ -13,8 +13,6 @@ const ReviewsSection = ({reviews}) => {
         setShowAllReviews(true);
     };
 
-    console.log(reviews);
-
     return (
         <div className="reviews-section">
             <p className="reviews-section-title"><span>Reviews</span> ({count})</p>

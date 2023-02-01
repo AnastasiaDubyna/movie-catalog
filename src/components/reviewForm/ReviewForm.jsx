@@ -2,13 +2,19 @@ import PropTypes from "prop-types";
 import { Button, Rating, TextField } from "@mui/material";
 import "./reviewForm.css";
 
-const ReviewForm = ({title, content, grade, onTextChange, onGradeChange, onSubmit}) => {
+const ReviewForm = ({title, content, grade, username, onTextChange, onGradeChange, onSubmit}) => {
     return (
         <div className="review-form">
             <p className="review-form-title">Add Your Review</p>
             <Rating
                 value={grade}
                 onChange={onGradeChange}
+            />
+            <TextField
+                value={username}
+                label="Username"
+                id="username"
+                onChange={onTextChange}
             />
             <TextField 
                 value={title}
@@ -35,7 +41,12 @@ ReviewForm.propTypes = {
     grade: PropTypes.number.isRequired,
     onTextChange: PropTypes.func.isRequired,
     onGradeChange: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
-}
+    onSubmit: PropTypes.func.isRequired,
+    username: PropTypes.string
+};
+
+ReviewForm.defaultTypes = {
+    username: "Unknown user"
+};
 
 export default ReviewForm;

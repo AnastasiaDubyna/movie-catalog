@@ -13,3 +13,14 @@ export const fetchData = (path) => {
     return axios.get(path, config);
 };
 
+export const postData = (path, data) => {
+    const config = {
+        headers: getDefaultHeaders()
+    }; 
+
+    console.log(data);
+
+    return axios.post(path, data, config);
+};
+
+

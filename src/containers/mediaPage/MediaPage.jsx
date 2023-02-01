@@ -1,12 +1,14 @@
 import { CircularProgress } from '@mui/material';
 import queryString from 'query-string'; 
 import { useState } from 'react';
+// import { useQueryClient } from 'react-query';
 import { MOVIE } from '../../constants';
 import MoviePage from '../../pages/moviePage/MoviePage';
 import useFetchCredits from '../../query/useFetchCredits';
 import useFetchData from '../../query/useFetchData';
 import useFetchKeywords from '../../query/useFetchKeywords';
 import useFetchReviews from '../../query/useFetchReviews';
+import usePostReview from '../../query/usePostReview';
 
 
 const MediaPage = () => {
@@ -16,6 +18,12 @@ const MediaPage = () => {
     const [reviewFormTitle, setReviewFormTitle] = useState("");
     const [reviewFormContent, setReviewFormContent] = useState("");
     const [reviewFormGrade, setReviewFormGrade] = useState(0);
+    const [reviewFormUsername, setReviewFormUsername] = useState("");
+    const {mutate: postReview} = usePostReview();
+    const keywordsQuery = useFetchKeywords(type, id);
+    const reviewsQuery = useFetchReviews(id, type);
+
+
 
     const handleReviewFormTextChange = ({target: {id, value}}) => {
         switch(id) {
@@ -24,6 +32,9 @@ const MediaPage = () => {
                 break;
             case "content": 
                 setReviewFormContent(value);
+                break;
+            case "username":
+                setReviewFormUsername(value);
                 break;
             default:
                 clearReviewFormInputs();
@@ -36,24 +47,22 @@ const MediaPage = () => {
     };
 
     const handleReviewFormSubmit = () => {
+        const newReview = {
+            title: reviewFormTitle,
+            username: reviewFormUsername,
+            content: reviewFormContent,
+            grade: reviewFormGrade
+        };
         
+        postReview({id, newReview});
+        clearReviewFormInputs();
     };
 
     const clearReviewFormInputs = () => {
         setReviewFormContent("");
         setReviewFormGrade(0);
         setReviewFormTitle("");
-    };
-
-    const getKeywords = () => {
-        const {keywordsData} = useFetchKeywords(type, id);
-        return keywordsData ? keywordsData.keywords : [];
-    };
-
-    const getReviews = () => {
-        const {reviewsData} = useFetchReviews(id);
-        console.log(reviewsData);
-        return reviewsData ? reviewsData.data : [];
+        setReviewFormUsername("");
     };
 
     if (isLoading) {
@@ -71,11 +80,12 @@ const MediaPage = () => {
                     <MoviePage 
                         data={data} 
                         creditsData={creditsData}
-                        getKeywords={getKeywords}
-                        getReviews={getReviews}
+                        keywordsQuery={keywordsQuery}
+                        reviewsQuery={reviewsQuery}
                         reviewFormTitle={reviewFormTitle}
                         reviewFormContent={reviewFormContent}
                         reviewFormGrade={reviewFormGrade}
+                        reviewFormUsername={reviewFormUsername}
                         onReviewFormTextChange={handleReviewFormTextChange}
                         onReviewFormGradeChange={handleReviewFormGradeChange}
                         onReviewFormSubmit={handleReviewFormSubmit}

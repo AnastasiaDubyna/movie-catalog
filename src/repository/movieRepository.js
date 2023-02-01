@@ -1,4 +1,4 @@
-import { fetchData } from "../api"
+import { fetchData, postData } from "../api"
 import { popularMediaUrl } from "./constants.js";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -44,6 +44,11 @@ export const getSearch = async (query, type, page) => {
     const {data} = await fetchData(`${API_URL}/search/${type}?query=${query}&page=${page}`);
     return data;
 };
+
+export const postReview = async ({id, newReview}) => {
+    const {data: {success}} = await postData(`${SERVER_URL}/review/add`, {id, newReview});
+    return success;
+}
 
 // const getConfigurations = async () => {
 //     const {data} = await fetchData(`${API_URL}/configuration`);
