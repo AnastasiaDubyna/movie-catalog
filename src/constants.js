@@ -9,7 +9,7 @@ export const WEEK = "week";
 export const trendingCarouselTabs = [DAY, WEEK];
 
 export const MOVIES = "movies";
-export const TV_SHOWS = "tv shows";
+export const TV_SHOWS = "tv_shows";
 export const PEOPLE = "people";
 export const searchResultsTabs = [MOVIES, TV_SHOWS, PEOPLE];
 

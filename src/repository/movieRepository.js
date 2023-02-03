@@ -5,8 +5,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export const getReviewsById = async (id) => {
-    const response = await fetchData(`${SERVER_URL}/review/all/${id}`);
-    return response;
+    const {data} = await fetchData(`${SERVER_URL}/review/all/${id}`);
+    return data;
 }
 
 export const getMovieById = async (id) => {
@@ -45,10 +45,23 @@ export const getSearch = async (query, type, page) => {
     return data;
 };
 
+export const getFavourites = async (type) => {
+    const IDs = await getFavouritesIDs(type);
+    const results = await Promise.all(IDs.map(async id => await getDataById(type, id)));
+
+    return results;
+};
+
+export const getFavouritesIDs = async (type) => {
+    const {data: {results}} = await fetchData(`${SERVER_URL}/favourite/getAll?type=${type}`);
+
+    return results;
+};
+
 export const postReview = async ({id, newReview}) => {
     const {data: {success}} = await postData(`${SERVER_URL}/review/add`, {id, newReview});
     return success;
-}
+};
 
 // const getConfigurations = async () => {
 //     const {data} = await fetchData(`${API_URL}/configuration`);

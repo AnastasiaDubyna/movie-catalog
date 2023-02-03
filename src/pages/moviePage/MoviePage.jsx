@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 import PageBase from "../../components/pageBase/PageBase";
 import MediaBanner from "../../components/mediaBanner/MediaBanner";
 import CastCarousel from "../../components/castCarousel/CastCarousel";
-import { CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import "./moviePage.css";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
+import LoadingHandler from "../../components/loadingHandler/LoadingHandler";
 
-const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit, onLoadingError}) => {
+const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
     const mainActors = creditsData && creditsData.cast.slice(0, 10);
@@ -36,15 +37,12 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                             onGradeChange={onReviewFormGradeChange}
                             onSubmit={onReviewFormSubmit}
                         />
-                        { 
-                            isLoadingReviews //<------------------------?
-                                ? (
-                                    reviewsError
-                                        ? onLoadingError()
-                                        : <CircularProgress />
-                                )
-                                : <ReviewsSection reviews={reviewsData.data}/>
-                        }
+                        <LoadingHandler
+                            isLoading={isLoadingReviews}
+                            error={reviewsError}
+                        >
+                            <ReviewsSection reviewsData={reviewsData}/>
+                        </LoadingHandler>
                         {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={2} id="movie-page-side-section">
@@ -67,15 +65,12 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                             </div>
                             <div>
                                 <p className="title">Keywords</p>
-                                {
-                                    isLoadingKeywords 
-                                        ? (
-                                            keywordsError
-                                            ? onLoadingError()
-                                            : <CircularProgress /> 
-                                        )
-                                        : <Keywords keywords={keywordsData.keywords} /> 
-                                }
+                                <LoadingHandler
+                                    isLoading={isLoadingKeywords}
+                                    error={keywordsError}
+                                >
+                                    <Keywords keywordsData={keywordsData} /> 
+                                </LoadingHandler>
                             </div>
                         </div> 
                     </Grid>
@@ -121,7 +116,7 @@ MoviePage.propTypes = {
     onReviewFormTextChange: PropTypes.func.isRequired, 
     onReviewFormGradeChange: PropTypes.func.isRequired, 
     onReviewFormSubmit: PropTypes.func.isRequired,
-    onLoadingError: PropTypes.func.isRequired
+    // onLoadingError: PropTypes.func.isRequired
 };
 
 export default MoviePage;
