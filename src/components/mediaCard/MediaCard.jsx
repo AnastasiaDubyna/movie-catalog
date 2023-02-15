@@ -3,10 +3,14 @@ import { mediaTypes} from "../../constants";
 import RatingCircle from "../ratingCircle/RatingCircle";
 import { API_IMG_W154_URL } from "./constants";
 import "./mediaCard.css";
+import FavouriteIcon from '../favouriteIcon/FavouriteIcon';
 
 const MediaCard = ({mediaData, withRating, onClick}) => (
     <div className="media-card" onClick={() => onClick(mediaData.id, mediaData.media_type)}>
-        <img className="media-image" src={`${API_IMG_W154_URL}${mediaData.poster_path ||mediaData.profile_path}`} />
+        <div className='media-image-container'>
+            <FavouriteIcon mediaId={mediaData.id} />
+            <img className="media-image" src={`${API_IMG_W154_URL}${mediaData.poster_path || mediaData.profile_path}`} />
+        </div>
         {
             withRating && 
             <div className="media-card-rating">
@@ -16,6 +20,7 @@ const MediaCard = ({mediaData, withRating, onClick}) => (
         <p className="media-title">{mediaData.title || mediaData.name}</p>
     </div>
 );
+
 
 MediaCard.propTypes = {
     mediaData: PropTypes.shape({

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Popover from '@idui/react-popover'
 import "./iconPopover.css";
 
-const IconPopover = ({icon, text}) => (
+const IconPopover = ({icon, text, onClick}) => (
     <div className="icon-popover">
         <Popover
             animation={{
@@ -27,18 +27,25 @@ const IconPopover = ({icon, text}) => (
             fitMaxHeightToBounds
             fitMaxWidthToBounds
         >
-            <button className="icon-popover-button">{icon}</button>
+            <button 
+                className="icon-popover-button"
+                onClick={onClick}
+            >
+                {icon}
+            </button>
         </Popover>
     </div>
 );
 
 IconPopover.propTypes = {
     icon: PropTypes.element.isRequired,
-    text: PropTypes.string
+    text: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 IconPopover.defaultProps = {
-    text: "Generic text"
+    text: "Generic text",
+    onClick: () => {console.log("Click")}
 };
 
 export default IconPopover;

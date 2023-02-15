@@ -5,27 +5,31 @@ import { useNavigate } from 'react-router-dom';
 // import { useQueryClient } from 'react-query';
 import { MOVIE } from '../../constants';
 import MoviePage from '../../pages/moviePage/MoviePage';
+import useDeleteFavourite from '../../query/useDeleteFavourite';
 import useFetchCredits from '../../query/useFetchCredits';
 import useFetchData from '../../query/useFetchData';
+import useFetchIsFavourite from '../../query/useFetchIsFavourite';
 import useFetchKeywords from '../../query/useFetchKeywords';
 import useFetchReviews from '../../query/useFetchReviews';
+import usePostFavourite from '../../query/usePostFavourite';
 import usePostReview from '../../query/usePostReview';
 
 
 const MediaPage = () => {
     const {type, id} = queryString.parse(location.search);
     const {isLoading, error, data} = useFetchData(type, id);
-    const {creditsData} = useFetchCredits(type, id);
     const [reviewFormTitle, setReviewFormTitle] = useState("");
     const [reviewFormContent, setReviewFormContent] = useState("");
     const [reviewFormGrade, setReviewFormGrade] = useState(0);
     const [reviewFormUsername, setReviewFormUsername] = useState("");
     const {mutate: postReview} = usePostReview();
+    const {mutate: postFavourite} = usePostFavourite();
+    const {mutate: removeFavourite} = useDeleteFavourite();
     const keywordsQuery = useFetchKeywords(type, id);
     const reviewsQuery = useFetchReviews(id, type);
+    const creditsQuery = useFetchCredits(type, id);
+    const {isFavourite} = useFetchIsFavourite(id);
     const navigate = useNavigate();
-
-
 
     const handleReviewFormTextChange = ({target: {id, value}}) => {
         switch(id) {
@@ -41,6 +45,14 @@ const MediaPage = () => {
             default:
                 clearReviewFormInputs();
                 break;
+        }
+    };
+
+    const handleFavouriteButtonClick = () => {
+        if (isFavourite) {
+            removeFavourite({id});
+        } else {
+            postFavourite({id, type});
         }
     };
 
@@ -84,7 +96,8 @@ const MediaPage = () => {
             return (
                 <MoviePage 
                     data={data} 
-                    creditsData={creditsData}
+                    isFavourite={isFavourite}
+                    creditsQuery={creditsQuery}
                     keywordsQuery={keywordsQuery}
                     reviewsQuery={reviewsQuery}
                     reviewFormTitle={reviewFormTitle}
@@ -95,6 +108,7 @@ const MediaPage = () => {
                     onReviewFormGradeChange={handleReviewFormGradeChange}
                     onReviewFormSubmit={handleReviewFormSubmit}
                     onLoadingError={handleLoadingError}
+                    onFavouriteButtonClick={handleFavouriteButtonClick}
                 />
             )
     }

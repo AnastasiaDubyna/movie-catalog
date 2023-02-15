@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ErrorPage from "../../pages/errorPage/ErrorPage";
 
 const LoadingHandler = ({isLoading, error, children}) => {
-
+    
     if (isLoading) {
         return <CircularProgress />
     }

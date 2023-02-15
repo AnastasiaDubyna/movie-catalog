@@ -8,6 +8,7 @@ import "./searchResultsPage.css";
 import MediaCard from '../../components/mediaCard/MediaCard';
 import getSearchAction from '../../redux/actions/getSearchAction';
 import queryString from 'query-string'; 
+import { useNavigate } from 'react-router-dom';
 
 const SearchResultsPage = () => {
     const {results, total_pages} = useSelector(state => state.mediaReducer.searched);
@@ -15,6 +16,7 @@ const SearchResultsPage = () => {
     const [activePage, setActivePage] = useState(1);
     const {query} = queryString.parse(location.search);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleTabChange = (_, newValue) => {
         setActiveTab(newValue);
@@ -23,6 +25,10 @@ const SearchResultsPage = () => {
 
     const handlePageChange = (_, value) => {
         setActivePage(value);
+    };
+
+    const handleMediaCardClick = (id, type) => {
+        navigate(`/media?type=${type}&id=${id}`);
     };
     
     useEffect(() => {
@@ -58,7 +64,10 @@ const SearchResultsPage = () => {
                     {
                         results && results.map(resObj => (
                             <Grid item key={nanoid(3)}>
-                                <MediaCard mediaData={resObj} /> 
+                                <MediaCard 
+                                    mediaData={{...resObj, media_type: getMediaType()}} 
+                                    onClick={handleMediaCardClick}
+                                /> 
                             </Grid>
                         ))
                     }

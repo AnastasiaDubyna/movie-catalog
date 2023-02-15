@@ -10,12 +10,12 @@ import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
 import LoadingHandler from "../../components/loadingHandler/LoadingHandler";
 
-const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit}) => {
+const MoviePage = ({data, isFavourite, creditsQuery, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit, onFavouriteButtonClick}) => {
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
-    const mainActors = creditsData && creditsData.cast.slice(0, 10);
     const {isLoadingKeywords, keywordsError, keywordsData} = keywordsQuery;
     const {isLoadingReviews, reviewsError, reviewsData} = reviewsQuery;
+    const {isLoadingCredits, creditsError, creditsData} = creditsQuery;
 
     return (
         <PageBase>
@@ -23,11 +23,19 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                     <MediaBanner
                         mediaData={data}
+                        isFavourite={isFavourite}
+                        onFavouriteButtonClick={onFavouriteButtonClick}
                     />
                 </Grid>
-                <Grid container item  xs={12} sm={12} md={12} lg={8} justifyContent="space-between">
-                    <Grid container item xs={12} sm={12} md={12} lg={9} className="movie-page-main-content">
-                        <CastCarousel castData={mainActors} />
+                <Grid container item  xs={8} sm={8} md={8} lg={8} justifyContent="space-between">
+                    <Grid container item sm={9} md={9} lg={9} className="movie-page-main-content">
+                        <LoadingHandler
+                            isLoading={isLoadingCredits}
+                            error={creditsError}
+                        >
+                            <CastCarousel creditsData={creditsData} />
+                        </LoadingHandler>
+                            
                         <ReviewForm
                             title={reviewFormTitle}
                             content={reviewFormContent}
@@ -45,7 +53,7 @@ const MoviePage = ({data, creditsData, keywordsQuery, reviewsQuery, reviewFormTi
                         </LoadingHandler>
                         {belongs_to_collection && <CollectionPreview collectionData={belongs_to_collection} />}
                     </Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={2} id="movie-page-side-section">
+                    <Grid item sm={2} md={2} lg={2} id="movie-page-side-section">
                         <div className="movie-page-side-info">
                             <div>
                                 <p className="title">Status</p>
@@ -93,12 +101,7 @@ MoviePage.propTypes = {
             name: PropTypes.string
         })
     }).isRequired, 
-    creditsData: PropTypes.shape({
-        cast: PropTypes.arrayOf(PropTypes.shape({
-            name: PropTypes.string,
-            character: PropTypes.string
-        })).isRequired
-    }).isRequired, 
+    isFavourite: PropTypes.bool,
     keywordsQuery: PropTypes.shape({
         isLoadingKeywords: PropTypes.bool, 
         keywordsError: PropTypes.any, //Какой тут должен быть тип? 
@@ -109,6 +112,11 @@ MoviePage.propTypes = {
         reviewsError: PropTypes.any, 
         reviewsData: PropTypes.object
     }).isRequired,
+    creditsQuery: PropTypes.shape({
+        isLoadingCredits: PropTypes.bool, 
+        creditsError: PropTypes.any, 
+        creditsData: PropTypes.object
+    }).isRequired,
     reviewFormTitle: PropTypes.string.isRequired, 
     reviewFormContent: PropTypes.string.isRequired, 
     reviewFormGrade: PropTypes.number.isRequired, 
@@ -116,7 +124,7 @@ MoviePage.propTypes = {
     onReviewFormTextChange: PropTypes.func.isRequired, 
     onReviewFormGradeChange: PropTypes.func.isRequired, 
     onReviewFormSubmit: PropTypes.func.isRequired,
-    // onLoadingError: PropTypes.func.isRequired
+    onFavouriteButtonClick: PropTypes.func.isRequired
 };
 
 export default MoviePage;

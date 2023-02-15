@@ -10,6 +10,18 @@
     font-size: 1.75em;
 }
 
+.media-image-container {
+    position: relative;
+    z-index: -1;
+}
+
+.media-image-star {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    color: var(--gold);
+}
+
 .media-image {
     border-radius: 5px;
 }
@@ -24,5 +36,5 @@
     width: 50px;
     height: 50px;
     margin-left: 13px;
-    margin-top: -25px;
+    margin-top: -32px;
 }

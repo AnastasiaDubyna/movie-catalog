@@ -18,9 +18,16 @@ export const postData = (path, data) => {
         headers: getDefaultHeaders()
     }; 
 
-    console.log(data);
 
     return axios.post(path, data, config);
 };
+
+export const deleteData = (path) => {
+    const config = {
+        headers: getDefaultHeaders()
+    }; 
+
+    return axios.delete(path, config);
+}
 
 
