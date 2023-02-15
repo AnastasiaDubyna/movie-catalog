@@ -5,7 +5,7 @@ import { useState } from "react";
 import Review from "../review/Review";
 import "./reviewsSection.css";
 
-const ReviewsSection = ({reviews}) => {
+const ReviewsSection = ({reviewsData: {reviews}}) => {
     const [showAllReviews, setShowAllReviews] = useState(false);
     const count = reviews ? reviews.length : 0;
     const firstReview = reviews[0];
@@ -29,12 +29,14 @@ const ReviewsSection = ({reviews}) => {
 };
 
 ReviewsSection.propTypes = {
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-        username: PropTypes.string,
-        date: PropTypes.date, 
-        content: PropTypes.string,
-        title: PropTypes.string
-    })).isRequired
+    reviewsData: PropTypes.shape({
+        reviews: PropTypes.arrayOf(PropTypes.shape({
+            username: PropTypes.string,
+            date: PropTypes.date, 
+            content: PropTypes.string,
+            title: PropTypes.string
+        })).isRequired
+    })
 }
 
 export default ReviewsSection;

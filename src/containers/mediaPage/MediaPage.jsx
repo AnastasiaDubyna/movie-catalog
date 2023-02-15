@@ -79,27 +79,26 @@ const MediaPage = () => {
         return <h1>Error</h1>
     }
 
-    if (data) {
-        switch (type) {
-            case MOVIE:
-                return (
-                    <MoviePage 
-                        data={data} 
-                        creditsData={creditsData}
-                        keywordsQuery={keywordsQuery}
-                        reviewsQuery={reviewsQuery}
-                        reviewFormTitle={reviewFormTitle}
-                        reviewFormContent={reviewFormContent}
-                        reviewFormGrade={reviewFormGrade}
-                        reviewFormUsername={reviewFormUsername}
-                        onReviewFormTextChange={handleReviewFormTextChange}
-                        onReviewFormGradeChange={handleReviewFormGradeChange}
-                        onReviewFormSubmit={handleReviewFormSubmit}
-                        onLoadingError={handleLoadingError}
-                    />
-                )
-        }
+    switch (type) {
+        case MOVIE:
+            return (
+                <MoviePage 
+                    data={data} 
+                    creditsData={creditsData}
+                    keywordsQuery={keywordsQuery}
+                    reviewsQuery={reviewsQuery}
+                    reviewFormTitle={reviewFormTitle}
+                    reviewFormContent={reviewFormContent}
+                    reviewFormGrade={reviewFormGrade}
+                    reviewFormUsername={reviewFormUsername}
+                    onReviewFormTextChange={handleReviewFormTextChange}
+                    onReviewFormGradeChange={handleReviewFormGradeChange}
+                    onReviewFormSubmit={handleReviewFormSubmit}
+                    onLoadingError={handleLoadingError}
+                />
+            )
     }
+    
 };
 
 export default MediaPage;

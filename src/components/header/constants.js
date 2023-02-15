@@ -8,7 +8,7 @@ export const headerTabs = [
         path: "/tv-shows"
     }, 
     {
-        name: "People", 
-        path: "/people"
+        name: "Favourites", 
+        path: "/favourites"
     }
 ];
