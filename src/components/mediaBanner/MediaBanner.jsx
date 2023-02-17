@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { API_IMG_ORIGINAL_URL, API_IMG_W300_URL } from "../../constants";
 import IconPopover from '../iconPopover/IconPopover';
 import RatingCircle from "../ratingCircle/RatingCircle";
+import GradeIcon from '@mui/icons-material/Grade';
 import { iconPopovers } from './constants';
 import "./mediaBanner.css";
 
-const MediaBanner = ({mediaData}) => {
+const MediaBanner = ({mediaData, isFavourite, onFavouriteButtonClick}) => {
     const {title, backdrop_path, poster_path, release_date, genres, runtime} = mediaData;
     const releaseYear = release_date.substring(0, 4);
     const getGenresString = () => (
@@ -40,6 +41,19 @@ const MediaBanner = ({mediaData}) => {
                                 key={nanoid()}
                             />
                         ))}
+                        {
+                            isFavourite 
+                            ? <IconPopover 
+                                icon={<GradeIcon sx={{color: "rgb(235, 202, 26)"}}/>}
+                                text={"Remove from favourites"}
+                                onClick={onFavouriteButtonClick}
+                            />
+                            : <IconPopover 
+                                icon={<GradeIcon />}
+                                text={"Mark as favorite"}
+                                onClick={onFavouriteButtonClick}
+                            />
+                        }
                     </div>
                     <p className="media-banner-tagline">{mediaData.tagline}</p>
                     <div className="media-banner-description">
@@ -69,14 +83,17 @@ MediaBanner.propTypes = {
         vote_average: PropTypes.number.isRequired,
         tagline: PropTypes.string,
         overview: PropTypes.string
-    })
+    }),
+    isFavourite: PropTypes.bool,
+    onFavouriteButtonClick: PropTypes.func
 };
 
 MediaBanner.defaultProps = {
     mediaData: {
         tagline: "",
         overview: ""
-    }
+    }, 
+    isFavourite: false
 };
 
 export default MediaBanner;

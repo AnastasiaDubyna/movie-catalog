@@ -46,7 +46,9 @@ Review.defaultProps = {
     review: {
         date: Date.now(),
         grade: 0,
-        username: "Unknown user"
+        username: "Unknown user", 
+        title: "",
+        content: ""
     }
 };
 

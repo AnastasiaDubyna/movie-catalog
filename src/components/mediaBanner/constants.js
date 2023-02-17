@@ -1,7 +1,7 @@
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import GradeIcon from '@mui/icons-material/Grade';
+
 
 export const iconPopovers = [
     {
@@ -10,14 +10,10 @@ export const iconPopovers = [
     },
     {
         icon: <FavoriteIcon />,
-        text: "Mark as favorite"
+        text: "Do something"
     },
     {
         icon: <BookmarkIcon />,
         text: "Add to your watchlist"
-    },
-    {
-        icon: <GradeIcon />,
-        text: "Rate it!"
     }
 ];

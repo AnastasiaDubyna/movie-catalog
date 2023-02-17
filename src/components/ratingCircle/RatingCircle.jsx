@@ -10,7 +10,7 @@ const RatingCircle = ({voteAverage}) => {
         if (percentage < 40) return "low";
         if (percentage >= 70) return "high";
         return "moderate" 
-    }
+    };
 
     return (
         <CircularProgressbar 
@@ -18,11 +18,15 @@ const RatingCircle = ({voteAverage}) => {
             value={percentage} 
             text={`${percentage}%`} 
         />
-    )
+    );
 };
 
 RatingCircle.propTypes = {
     voteAverage: PropTypes.number
+};
+
+RatingCircle.defaultProps = {
+    voteAverage: 0
 };
 
 export default RatingCircle;

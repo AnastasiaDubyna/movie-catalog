@@ -65,6 +65,7 @@ const FavouritesPage = () => {
                                 <MediaCard 
                                     mediaData={{...resObj, media_type: mediaType}} 
                                     onClick={handleMediaCardClick}
+                                    isFavourite={true}
                                 /> 
                             </Grid>
                         ))

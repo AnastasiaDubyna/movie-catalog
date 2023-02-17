@@ -1,10 +1,9 @@
 import { useQuery } from "react-query";
 import { getFavourites } from "../repository/movieRepository";
 
-const useFetchFavourites = (category) => {
-    const {isLoading, error, data} = useQuery(["favourites", category], () => getFavourites(category));
+const useFetchFavourites = (type) => {
+    const {isLoading, error, data} = useQuery(["favourites", type], () => getFavourites(type));
 
-    console.log(data);
     return {
         isFavouritesLoading: isLoading,
         favouritesError: error, 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Carousel from "../carousel/Carousel";
 import { mediaTypes, popularCarouselTabs } from "../../constants";
 
-const PopularCarousel = ({activeTab, onTabChange, media, mediaType, onMediaCardClick}) => (
+const PopularCarousel = ({activeTab, onTabChange, media, mediaType, onMediaCardClick, getIsFavourite}) => (
     <Carousel
         title="What's Popular"
         activeTab={activeTab}
@@ -11,6 +11,7 @@ const PopularCarousel = ({activeTab, onTabChange, media, mediaType, onMediaCardC
         media={media}
         mediaType={mediaType}
         onMediaCardClick={onMediaCardClick}
+        getIsFavourite={getIsFavourite}
     />
 );
 
@@ -27,7 +28,8 @@ PopularCarousel.propTypes = {
         media_type: PropTypes.oneOf(mediaTypes)
     })),
     mediaType: PropTypes.oneOf(mediaTypes).isRequired,
-    onMediaCardClick: PropTypes.func
+    onMediaCardClick: PropTypes.func.isRequired,
+    getIsFavourite: PropTypes.func.isRequired
 };
 
 export default PopularCarousel;

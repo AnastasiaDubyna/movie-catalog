@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from 'react-query';
 import { store } from './redux/store/store';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import App from './App';
+import './index.css';
 
-const queryClient = new QueryClient();
+const requestErrorHandler = async () => {
+    window.location = "./error"
+};
+
+const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onError: requestErrorHandler
+    }),
+    mutationCache: new MutationCache({
+        onError: requestErrorHandler
+    })
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

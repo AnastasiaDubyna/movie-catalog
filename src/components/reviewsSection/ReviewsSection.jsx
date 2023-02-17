@@ -9,6 +9,7 @@ const ReviewsSection = ({reviewsData: {reviews}}) => {
     const [showAllReviews, setShowAllReviews] = useState(false);
     const count = reviews ? reviews.length : 0;
     const firstReview = reviews[0];
+    
     const handleClick = () => {
         setShowAllReviews(true);
     };

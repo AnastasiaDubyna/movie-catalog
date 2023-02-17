@@ -1,5 +1,5 @@
-import { fetchData, postData } from "../api"
-import { popularMediaUrl } from "./constants.js";
+import { deleteData, fetchData, postData } from "../api"
+import { ALL, popularMediaUrl } from "./constants.js";
 
 const API_URL = process.env.REACT_APP_API_URL;
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -52,7 +52,13 @@ export const getFavourites = async (type) => {
     return results;
 };
 
-export const getFavouritesIDs = async (type) => {
+export const getIsFavourite = async (id) => {
+    const {data: isFavourite} = await fetchData(`${SERVER_URL}/favourite/isFavourite?id=${id}`);
+
+    return isFavourite;
+}
+
+export const getFavouritesIDs = async (type=ALL) => {
     const {data: {results}} = await fetchData(`${SERVER_URL}/favourite/getAll?type=${type}`);
 
     return results;
@@ -63,7 +69,10 @@ export const postReview = async ({id, newReview}) => {
     return success;
 };
 
-// const getConfigurations = async () => {
-//     const {data} = await fetchData(`${API_URL}/configuration`);
-//     console.log(data);
-// };
+export const postFavourite = async ({id, type}) => {
+    await postData(`${SERVER_URL}/favourite/add?id=${id}&type=${type}`);
+};
+
+export const deleteFavourite = async ({id}) => {
+    await deleteData(`${SERVER_URL}/favourite/remove?id=${id}`);
+};

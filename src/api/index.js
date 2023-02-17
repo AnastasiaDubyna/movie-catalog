@@ -5,22 +5,20 @@ const getDefaultHeaders = () => ({
     "Content-Type": "application/json;charset=utf-8",
 });
 
-export const fetchData = (path) => {
-    const config = {
-        headers: getDefaultHeaders()
-    }; 
+const basicConfig = {
+    headers: getDefaultHeaders()
+};
 
-    return axios.get(path, config);
+export const fetchData = (path) => {
+    return axios.get(path, basicConfig);
 };
 
 export const postData = (path, data) => {
-    const config = {
-        headers: getDefaultHeaders()
-    }; 
+    return axios.post(path, data, basicConfig);
+};
 
-    console.log(data);
-
-    return axios.post(path, data, config);
+export const deleteData = (path) => {
+    return axios.delete(path, basicConfig);
 };
 
 

@@ -9,15 +9,15 @@ import "./header.css";
 const Header = () => (
     <div className="header-container">
         <Grid container className="header-grid" sx={{width: "67%"}}>
-            <Grid item  xs={5} sm={6} md={7} lg={1}>
+            <Grid item  xs={5} sm={2} md={2} lg={1}>
                 <Logo />
             </Grid>
             {headerTabs.map(tabObj => (
-                <Grid container item  xs={5} sm={6} md={7} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
+                <Grid container item  xs={5} sm={2} md={2} lg={1} justifyContent="center" className="header-tab" key={nanoid(3)}>
                     <Link to={tabObj.path}>{tabObj.name}</Link>
                 </Grid>
             ))}
-            <Grid container item  xs={5} sm={6} md={7} lg={8} justifyContent="flex-end">
+            <Grid container item  xs={5} sm={4} md={4} lg={8} justifyContent="flex-end">
                 <Search className="header-search"/>
             </Grid>
         </Grid>
