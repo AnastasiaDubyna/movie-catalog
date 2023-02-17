@@ -1,21 +1,35 @@
 import PropTypes from "prop-types";
+import { Grid } from "@mui/material";
 import PageBase from "../../components/pageBase/PageBase";
 import MediaBanner from "../../components/mediaBanner/MediaBanner";
 import CastCarousel from "../../components/castCarousel/CastCarousel";
-import { Grid } from "@mui/material";
-import "./moviePage.css";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 import Keywords from "../../components/keywords/Keywords";
 import ReviewsSection from "../../components/reviewsSection/ReviewsSection";
 import ReviewForm from "../../components/reviewForm/ReviewForm";
 import LoadingHandler from "../../components/loadingHandler/LoadingHandler";
+import "./moviePage.css";
 
-const MoviePage = ({data, isFavourite, creditsQuery, keywordsQuery, reviewsQuery, reviewFormTitle, reviewFormUsername, reviewFormContent, reviewFormGrade, onReviewFormTextChange, onReviewFormGradeChange, onReviewFormSubmit, onFavouriteButtonClick}) => {
+const MoviePage = (props) => {
+    const {
+        data, isFavourite, 
+        creditsQuery, 
+        keywordsQuery, 
+        reviewsQuery, 
+        reviewFormTitle, 
+        reviewFormUsername, 
+        reviewFormContent, 
+        reviewFormGrade, 
+        onReviewFormTextChange, 
+        onReviewFormGradeChange, 
+        onReviewFormSubmit, 
+        onFavouriteButtonClick
+    } = props;
     const {status, spoken_languages, budget, revenue, belongs_to_collection} = data;
     const originalLanguage = spoken_languages[0].english_name;
-    const {isLoadingKeywords, keywordsError, keywordsData} = keywordsQuery;
-    const {isLoadingReviews, reviewsError, reviewsData} = reviewsQuery;
-    const {isLoadingCredits, creditsError, creditsData} = creditsQuery;
+    const {isLoadingKeywords, keywordsData} = keywordsQuery;
+    const {isLoadingReviews, reviewsData} = reviewsQuery;
+    const {isLoadingCredits, creditsData} = creditsQuery;
 
     return (
         <PageBase>
@@ -31,7 +45,6 @@ const MoviePage = ({data, isFavourite, creditsQuery, keywordsQuery, reviewsQuery
                     <Grid container item sm={9} md={9} lg={9} className="movie-page-main-content">
                         <LoadingHandler
                             isLoading={isLoadingCredits}
-                            error={creditsError}
                         >
                             <CastCarousel creditsData={creditsData} />
                         </LoadingHandler>
@@ -47,7 +60,6 @@ const MoviePage = ({data, isFavourite, creditsQuery, keywordsQuery, reviewsQuery
                         />
                         <LoadingHandler
                             isLoading={isLoadingReviews}
-                            error={reviewsError}
                         >
                             <ReviewsSection reviewsData={reviewsData}/>
                         </LoadingHandler>
@@ -75,7 +87,6 @@ const MoviePage = ({data, isFavourite, creditsQuery, keywordsQuery, reviewsQuery
                                 <p className="title">Keywords</p>
                                 <LoadingHandler
                                     isLoading={isLoadingKeywords}
-                                    error={keywordsError}
                                 >
                                     <Keywords keywordsData={keywordsData} /> 
                                 </LoadingHandler>
@@ -104,17 +115,14 @@ MoviePage.propTypes = {
     isFavourite: PropTypes.bool,
     keywordsQuery: PropTypes.shape({
         isLoadingKeywords: PropTypes.bool, 
-        keywordsError: PropTypes.any, //Какой тут должен быть тип? 
         keywordsData: PropTypes.object
     }).isRequired,
     reviewsQuery: PropTypes.shape({
         isLoadingReviews: PropTypes.bool, 
-        reviewsError: PropTypes.any, 
         reviewsData: PropTypes.object
     }).isRequired,
     creditsQuery: PropTypes.shape({
         isLoadingCredits: PropTypes.bool, 
-        creditsError: PropTypes.any, 
         creditsData: PropTypes.object
     }).isRequired,
     reviewFormTitle: PropTypes.string.isRequired, 

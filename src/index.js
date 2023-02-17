@@ -3,18 +3,13 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { store } from './redux/store/store';
 import App from './App';
 import './index.css';
 
-// Как правильно структурировать это? 
-// И кажется я не могу вызывать хук здесь. help
-
 const requestErrorHandler = async () => {
-    const navigate = useNavigate();
-    navigate("/error");
-}
+    window.location = "./error"
+};
 
 const queryClient = new QueryClient({
     queryCache: new QueryCache({

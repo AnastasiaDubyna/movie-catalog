@@ -9,7 +9,11 @@ const CastCard = ({data}) => {
     return (
         <Card className="cast-card">
             <CardMedia>
-                <img src={`${API_IMG_W185_URL}${profile_path}`} />
+                {
+                    profile_path
+                    ? <img src={`${API_IMG_W185_URL}${profile_path}`} />
+                    : <img src={require("../../images/not-found.png")}/>
+                }
             </CardMedia>
             <CardContent>
                 <p className="cast-card-name">{name}</p>
@@ -25,13 +29,6 @@ CastCard.propTypes = {
         profile_path: PropTypes.string,
         character: PropTypes.string.isRequired
     }).isRequired
-};
-
-// запилить какую-то дефотную картинку
-CastCard.defaultProps = {
-    data: {
-        profile_path: ""
-    }
 };
 
 export default CastCard;

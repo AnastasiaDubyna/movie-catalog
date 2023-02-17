@@ -6,3 +6,5 @@ export const popularMediaUrl = {
     [ON_TV]: "/tv/airing_today",
     [STREAMING]: "/tv/popular"
 };
+
+export const ALL = "all";

@@ -1,8 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import queryString from 'query-string'; 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { useQueryClient } from 'react-query';
 import { MOVIE } from '../../constants';
 import MoviePage from '../../pages/moviePage/MoviePage';
 import useDeleteFavourite from '../../query/useDeleteFavourite';
@@ -17,7 +15,7 @@ import usePostReview from '../../query/usePostReview';
 
 const MediaPage = () => {
     const {type, id} = queryString.parse(location.search);
-    const {isLoading, error, data} = useFetchData(type, id);
+    const {isLoading, data} = useFetchData(type, id);
     const [reviewFormTitle, setReviewFormTitle] = useState("");
     const [reviewFormContent, setReviewFormContent] = useState("");
     const [reviewFormGrade, setReviewFormGrade] = useState(0);
@@ -29,7 +27,6 @@ const MediaPage = () => {
     const reviewsQuery = useFetchReviews(id, type);
     const creditsQuery = useFetchCredits(type, id);
     const {isFavourite} = useFetchIsFavourite(id);
-    const navigate = useNavigate();
 
     const handleReviewFormTextChange = ({target: {id, value}}) => {
         switch(id) {
@@ -79,16 +76,8 @@ const MediaPage = () => {
         setReviewFormUsername("");
     };
 
-    const handleLoadingError = () => {
-        navigate("/error");
-    };
-
     if (isLoading) {
         return <CircularProgress />
-    }
-
-    if (error) {
-        return <h1>Error</h1>
     }
 
     switch (type) {
@@ -107,7 +96,6 @@ const MediaPage = () => {
                     onReviewFormTextChange={handleReviewFormTextChange}
                     onReviewFormGradeChange={handleReviewFormGradeChange}
                     onReviewFormSubmit={handleReviewFormSubmit}
-                    onLoadingError={handleLoadingError}
                     onFavouriteButtonClick={handleFavouriteButtonClick}
                 />
             )

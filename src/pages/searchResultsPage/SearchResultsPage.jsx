@@ -9,9 +9,11 @@ import MediaCard from '../../components/mediaCard/MediaCard';
 import getSearchAction from '../../redux/actions/getSearchAction';
 import queryString from 'query-string'; 
 import { useNavigate } from 'react-router-dom';
+import getFavouriteMediaIDsAction from '../../redux/actions/getFavouriteMediaIDsAction';
 
 const SearchResultsPage = () => {
     const {results, total_pages} = useSelector(state => state.mediaReducer.searched);
+    const favouriteMediaIDs = useSelector(state => state.mediaReducer.favourites);
     const [activeTab, setActiveTab] = useState(MOVIES);
     const [activePage, setActivePage] = useState(1);
     const {query} = queryString.parse(location.search);
@@ -30,11 +32,18 @@ const SearchResultsPage = () => {
     const handleMediaCardClick = (id, type) => {
         navigate(`/media?type=${type}&id=${id}`);
     };
+
+    const getIsFavourite = (id) => {
+        return favouriteMediaIDs.includes(id);
+    };
     
     useEffect(() => {
         const type = getMediaType();
         dispatch(getSearchAction(query, type, activePage));
     }, [activeTab, activePage]);
+    useEffect(() => {
+        dispatch(getFavouriteMediaIDsAction());
+    }, []);
 
     const getMediaType = () => {
         switch (activeTab) {
@@ -62,14 +71,18 @@ const SearchResultsPage = () => {
                 </Tabs>
                 <Grid container id="search-results-container">
                     {
-                        results && results.map(resObj => (
-                            <Grid item key={nanoid(3)}>
-                                <MediaCard 
-                                    mediaData={{...resObj, media_type: getMediaType()}} 
-                                    onClick={handleMediaCardClick}
-                                /> 
-                            </Grid>
-                        ))
+                        results && results.map(resObj => {
+                            const isFavourite = getIsFavourite(resObj.id);
+                            return (
+                                <Grid item key={nanoid(3)}>
+                                    <MediaCard 
+                                        mediaData={{...resObj, media_type: getMediaType()}} 
+                                        onClick={handleMediaCardClick}
+                                        isFavourite={isFavourite}
+                                    /> 
+                                </Grid>
+                            )
+                        })
                     }
                     <Grid item container justifyContent="center" id="search-results-pagination">
                         <Pagination 

@@ -12,7 +12,6 @@ const CastCarousel = ({creditsData: {cast}}) => {
     );
 };
 
-
 CastCarousel.propTypes = {
     creditsData: PropTypes.shape({
         cast: PropTypes.arrayOf(PropTypes.shape({

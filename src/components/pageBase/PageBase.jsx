@@ -12,7 +12,7 @@ const PageBase = ({children}) => {
             </div>
             <Footer />
         </div>
-    )
+    );
 };
 
 PageBase.propTypes = {

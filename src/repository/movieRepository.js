@@ -1,5 +1,5 @@
 import { deleteData, fetchData, postData } from "../api"
-import { popularMediaUrl } from "./constants.js";
+import { ALL, popularMediaUrl } from "./constants.js";
 
 const API_URL = process.env.REACT_APP_API_URL;
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -58,7 +58,7 @@ export const getIsFavourite = async (id) => {
     return isFavourite;
 }
 
-export const getFavouritesIDs = async (type) => {
+export const getFavouritesIDs = async (type=ALL) => {
     const {data: {results}} = await fetchData(`${SERVER_URL}/favourite/getAll?type=${type}`);
 
     return results;

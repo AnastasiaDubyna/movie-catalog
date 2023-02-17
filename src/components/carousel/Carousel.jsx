@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "@mui/material";
+import { CircularProgress, Tab, Tabs } from "@mui/material";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 import { mediaTypes } from "../../constants";
@@ -6,7 +6,7 @@ import MediaCard from "../mediaCard/MediaCard";
 import "./carousel.css";
 
 
-const Carousel = ({ title, tabs, media, activeTab, onTabChange, mediaType, onMediaCardClick }) => {
+const Carousel = ({ title, tabs, media, activeTab, onTabChange, mediaType, onMediaCardClick, getIsFavourite }) => {
     if (media) {
         return (
             <div className="carousel">
@@ -28,20 +28,21 @@ const Carousel = ({ title, tabs, media, activeTab, onTabChange, mediaType, onMed
                     </Tabs>
                 </div>
                 <div className="carousel-media">
-                    { media.map(mediaData => (
-                        <MediaCard 
+                    { media.map(mediaData => {
+                        const isFavourite = getIsFavourite(mediaData.id);
+                        return <MediaCard 
                             mediaData={mediaType ? {...mediaData, media_type: mediaType} : mediaData} 
                             withRating={true} 
                             key={mediaData.id}
                             onClick={onMediaCardClick}
+                            isFavourite={isFavourite}
                         />
-                    )) }
+                    }) }
                 </div>
             </div>
         )
     }
-    return null;
-    // допилить загрузку
+    return <CircularProgress />;
 };
 
 Carousel.propTypes = {
@@ -56,10 +57,11 @@ Carousel.propTypes = {
         title: PropTypes.string,
         name: PropTypes.string,
         vote_average: PropTypes.number,
-        media_type: PropTypes.oneOf(mediaTypes).isRequired
+        media_type: PropTypes.oneOf(mediaTypes)
     })),
     mediaType: PropTypes.oneOf(mediaTypes),
-    onMediaCardClick: PropTypes.func.isRequired
+    onMediaCardClick: PropTypes.func.isRequired,
+    getIsFavourite: PropTypes.func
 };
 
 export default Carousel;
