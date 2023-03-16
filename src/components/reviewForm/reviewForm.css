@@ -1,0 +1,23 @@
+.review-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.review-form-title {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.review-form button {
+    color: var(--dark-blue);
+    font-family: var(--main-font-family);
+    font-weight: 600;
+    width: 100px;
+    align-self: center;
+}
+
+.review-form button:hover {
+    background-color: rgba(var(--dark-grey-numeric), 0.5);
+}
+

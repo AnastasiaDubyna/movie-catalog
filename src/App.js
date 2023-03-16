@@ -1,10 +1,23 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/homePage/HomePage';
+import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
+import MediaPage from './containers/mediaPage/MediaPage';
+import ErrorPage from './pages/errorPage/ErrorPage';
+import FavouritesPage from './pages/favouritesPage/FavouritesPage';
 import './App.css';
+import './styles/constants.css';
 
 function App() {
 	return (
-		<div className="App">
-			hello world 
-		</div>
+		<Router>
+			<Routes>
+				<Route path="/" exact element={<HomePage />} />
+				<Route path="/search" element={<SearchResultsPage />} />
+				<Route path="/media" element={<MediaPage />} />
+				<Route path="/error" element={<ErrorPage />} />
+				<Route path="/favourites" element={<FavouritesPage />} />
+			</Routes>
+		</Router>
 	);
 }
 

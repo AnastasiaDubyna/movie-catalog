@@ -3,13 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@idui/react-popover": "^3.1.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
+    "moment": "^2.29.4",
+    "nanoid": "^4.0.0",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-debounce-input": "^3.3.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
+    "read-more-react": "^1.0.10",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -39,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "eslint": "^8.30.0",
     "eslint-plugin-react": "^7.31.11"
   }

@@ -1,0 +1,21 @@
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#footer-grid {
+    width: 60%;
+    justify-content: center;
+}
+
+.footer-column div:first-child {
+    font-weight: 800;
+    font-size: 1.2em;
+}

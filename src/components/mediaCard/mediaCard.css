@@ -1,0 +1,40 @@
+.media-card {
+    width: 154px;
+}
+
+.media-card:hover {
+    cursor: pointer;
+}
+
+.carousel-title {
+    font-size: 1.75em;
+}
+
+.media-image-container {
+    position: relative;
+    z-index: -1;
+}
+
+.media-image-star {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    color: var(--gold);
+}
+
+.media-image {
+    border-radius: 5px;
+}
+
+.media-title {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.media-card-rating {
+    width: 50px;
+    height: 50px;
+    margin-left: 13px;
+    margin-top: -32px;
+}

@@ -1,0 +1,11 @@
+.logo, .logo-img {
+    font-size: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--light-blue);
+}
+

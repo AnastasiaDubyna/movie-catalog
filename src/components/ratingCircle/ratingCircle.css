@@ -1,0 +1,27 @@
+.CircularProgressbar {
+    background-color: var(--the-darkest-grey);
+    border-radius: 100%;
+}
+
+.CircularProgressbar.low .CircularProgressbar-path {
+    stroke: var(--red);
+}
+
+.CircularProgressbar.high .CircularProgressbar-path {
+    stroke: var(--green);
+}
+
+.CircularProgressbar.moderate .CircularProgressbar-path {
+    stroke: var(--yellow);
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+    stroke: var(--dark-grey);
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: var(--white);
+    font-size: 1.8em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+}

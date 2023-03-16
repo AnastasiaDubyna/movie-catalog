@@ -1,0 +1,16 @@
+.cast-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 40px;
+    margin: auto;
+}
+
+.cast-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.cast-carousel::-webkit-scrollbar-thumb {
+    background-color: var(--light-grey);
+    border-radius: 5px;
+}

@@ -1,0 +1,22 @@
+.header-container {
+    background-color: var(--dark-blue);
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.header-grid {
+    align-items: center;
+    margin: auto;
+}
+
+.header-search {
+    justify-self: end;
+}
+
+.header-tab a {
+    color: var(--white);
+    font-size: 1em;
+    font-weight: 600;
+}
